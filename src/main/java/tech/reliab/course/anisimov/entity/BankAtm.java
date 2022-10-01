@@ -6,17 +6,17 @@ import java.util.Objects;
 
 public class BankAtm {
     //region ===================== Properties ======================
-    String id;
-    String name;
-    Address bankOfficeAddress;
-    Boolean isOpen;
-    Bank parentBank;
-    String placementInBank;
-    Employee maintenanceEmployee;
-    Boolean isCashWithdrawalAvailable;
-    Boolean isCashDepositAvailable;
-    int totalCash;
-    int costService;
+    private String id;
+    private String name;
+    private Address bankOfficeAddress;
+    private Boolean isOpen;
+    private Bank parentBank;
+    private String placementInBank;
+    private Employee maintenanceEmployee;
+    private Boolean isCashWithdrawalAvailable;
+    private Boolean isCashDepositAvailable;
+    private int totalCash;
+    private int costService;
 
     //region ===================== Constructors ======================
     public BankAtm(
