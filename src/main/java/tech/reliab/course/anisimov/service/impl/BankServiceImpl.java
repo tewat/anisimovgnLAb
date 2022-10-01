@@ -5,22 +5,22 @@ import tech.reliab.course.anisimov.service.BankService;
 
 public class BankServiceImpl implements BankService {
     //region ===================== Properties ======================
-    private Bank _bank = null;
+    private Bank bank = null;
 
     //region ===================== BankService implementation ======================
     @Override
     public Bank getBank() {
-        return _bank;
+        return bank;
     }
 
     @Override
     public void setBank(Bank bank) {
-        _bank = bank;
+        this.bank = bank;
     }
 
     @Override
     public Boolean updateBank(Bank bank) {
-        if (_bank == bank) {
+        if (this.bank == bank) {
             setBank(bank);
             return true;
         } else {
@@ -30,8 +30,8 @@ public class BankServiceImpl implements BankService {
 
     @Override
     public Boolean deleteBank(Bank bank) {
-        if (_bank == bank) {
-            _bank = null;
+        if (this.bank == bank) {
+            this.bank = null;
             return true;
         } else {
             return false;
