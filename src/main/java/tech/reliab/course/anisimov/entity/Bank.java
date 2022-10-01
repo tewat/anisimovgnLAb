@@ -129,29 +129,12 @@ public class Bank {
         if (o == null || getClass() != o.getClass()) return false;
 
         Bank bank = (Bank) o;
-        return getOfficesCount() == bank.getOfficesCount() &&
-                getAtmsCount() == bank.getAtmsCount() &&
-                getEmployeesCount() == bank.getEmployeesCount() &&
-                getClientsCount() == bank.getClientsCount() &&
-                getRating() == bank.getRating() &&
-                getTotalMoney() == bank.getTotalMoney() &&
-                Double.compare(bank.getInterestRate(), getInterestRate()) == 0 &&
-                getId().equals(bank.getId()) &&
-                getName().equals(bank.getName());
+        return getId().equals(bank.getId()) && getName().equals(bank.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(
-                getId(),
-                getName(),
-                getOfficesCount(),
-                getAtmsCount(),
-                getEmployeesCount(),
-                getClientsCount(),
-                getRating(),
-                getTotalMoney(),
-                getInterestRate());
+        return Objects.hash(getId(), getName());
     }
 
     @Override
