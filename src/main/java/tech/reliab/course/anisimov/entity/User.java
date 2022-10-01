@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.random.RandomGenerator;
 
-public class User {
+final public class User {
     //region ===================== Properties ======================
     private String id;
     private FullName fullName;

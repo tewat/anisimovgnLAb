@@ -2,7 +2,7 @@ package tech.reliab.course.anisimov.entity;
 
 import java.util.Objects;
 
-public class PaymentAccount {
+final public class PaymentAccount {
     //region ===================== Properties ======================
     private String id;
     private User user;

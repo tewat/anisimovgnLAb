@@ -3,7 +3,7 @@ package tech.reliab.course.anisimov.service.impl;
 import tech.reliab.course.anisimov.entity.BankAtm;
 import tech.reliab.course.anisimov.service.AtmService;
 
-public class AtmServiceImpl implements AtmService {
+final public class AtmServiceImpl implements AtmService {
     //region ===================== Properties ======================
     private BankAtm bankAtm = null;
 

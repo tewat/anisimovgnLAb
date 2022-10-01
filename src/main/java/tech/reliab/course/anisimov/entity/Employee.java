@@ -5,7 +5,7 @@ import tech.reliab.course.anisimov.entity.internalComponents.FullName;
 import java.util.Date;
 import java.util.Objects;
 
-public class Employee {
+final public class Employee {
     //region ===================== Properties ======================
     private String id;
     private FullName fullName;

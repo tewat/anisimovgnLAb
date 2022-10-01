@@ -3,7 +3,7 @@ package tech.reliab.course.anisimov.service.impl;
 import tech.reliab.course.anisimov.entity.PaymentAccount;
 import tech.reliab.course.anisimov.service.PaymentAccountService;
 
-public class PaymentAccountServiceImpl implements PaymentAccountService {
+final public class PaymentAccountServiceImpl implements PaymentAccountService {
     //region ===================== Properties ======================
     private PaymentAccount paymentAccount = null;
 

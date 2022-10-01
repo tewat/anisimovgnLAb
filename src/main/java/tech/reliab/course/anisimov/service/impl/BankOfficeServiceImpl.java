@@ -3,7 +3,7 @@ package tech.reliab.course.anisimov.service.impl;
 import tech.reliab.course.anisimov.entity.BankOffice;
 import tech.reliab.course.anisimov.service.BankOfficeService;
 
-public class BankOfficeServiceImpl implements BankOfficeService {
+final public class BankOfficeServiceImpl implements BankOfficeService {
     //region ===================== Properties ======================
     private BankOffice bankOffice = null;
 

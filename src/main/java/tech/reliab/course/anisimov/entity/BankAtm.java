@@ -4,7 +4,7 @@ import tech.reliab.course.anisimov.entity.internalComponents.Address;
 
 import java.util.Objects;
 
-public class BankAtm {
+final public class BankAtm {
     //region ===================== Properties ======================
     private String id;
     private String name;

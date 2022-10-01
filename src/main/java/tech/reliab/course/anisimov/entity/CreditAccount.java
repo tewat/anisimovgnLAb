@@ -3,7 +3,7 @@ package tech.reliab.course.anisimov.entity;
 import java.util.Date;
 import java.util.Objects;
 
-public class CreditAccount {
+final public class CreditAccount {
     //region ===================== Properties ======================
     private String id;
     private User customer;

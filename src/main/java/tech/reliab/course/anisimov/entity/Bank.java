@@ -3,7 +3,7 @@ package tech.reliab.course.anisimov.entity;
 import java.util.Objects;
 import java.util.random.RandomGenerator;
 
-public class Bank {
+final public class Bank {
     //region ===================== Properties ======================
     private String id;
     private String name;
