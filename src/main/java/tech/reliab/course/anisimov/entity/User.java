@@ -153,6 +153,12 @@ final public class User {
 
     @Override
     public String toString() {
+        var creditAccountId = "none credit accounts";
+        var paymentAccountId = "none payment account";
+
+        if (creditAccounts != null) { creditAccountId = creditAccounts.getId(); }
+        if (paymentAccounts != null) { paymentAccountId = paymentAccounts.getId(); }
+
         return "User{" +
                 "id='" + id + '\'' +
                 ", fullName=" + fullName +
@@ -160,8 +166,8 @@ final public class User {
                 ", placeOfWork='" + placeOfWork + '\'' +
                 ", monthlyIncome=" + monthlyIncome +
                 ", banks=" + banks +
-                ", creditAccounts=" + creditAccounts +
-                ", paymentAccounts=" + paymentAccounts +
+                ", creditAccountId=" + creditAccountId +
+                ", paymentAccountId=" + paymentAccountId +
                 ", loanRating=" + loanRating +
                 '}';
     }

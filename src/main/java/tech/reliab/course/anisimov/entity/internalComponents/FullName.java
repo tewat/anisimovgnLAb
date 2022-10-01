@@ -15,6 +15,11 @@ final public class FullName {
         this.patronymic = patronymic;
     }
 
+    public FullName(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+
     //region ===================== Setters ======================
     public void setName(String name) {
         this.name = name;
