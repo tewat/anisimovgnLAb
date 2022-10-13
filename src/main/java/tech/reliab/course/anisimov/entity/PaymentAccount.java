@@ -5,21 +5,21 @@ import java.util.Objects;
 final public class PaymentAccount {
     //region ===================== Properties ======================
     private String id;
-    private User user;
+    private String userId;
     private String bankName;
     private int totalCash;
 
     //region ===================== Constructors ======================
-    public PaymentAccount(String id, User user, String bankName, int totalCash) {
+    public PaymentAccount(String id, String userId, String bankName, int totalCash) {
         this.id = id;
-        this.user = user;
+        this.userId = userId;
         this.bankName = bankName;
         this.totalCash = totalCash;
     }
 
-    public PaymentAccount(String id, User user, String bankName) {
+    public PaymentAccount(String id, String userId, String bankName) {
         this.id = id;
-        this.user = user;
+        this.userId = userId;
         this.bankName = bankName;
         this.totalCash = 0;
     }
@@ -29,8 +29,8 @@ final public class PaymentAccount {
         this.id = id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public void setBankName(String bankName) {
@@ -46,8 +46,8 @@ final public class PaymentAccount {
         return id;
     }
 
-    public User getUser() {
-        return user;
+    public String getUserId() {
+        return userId;
     }
 
     public String getBankName() {
@@ -64,19 +64,19 @@ final public class PaymentAccount {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PaymentAccount that = (PaymentAccount) o;
-        return getId().equals(that.getId()) && getUser().equals(that.getUser()) && getBankName().equals(that.getBankName());
+        return getId().equals(that.getId()) && getUserId().equals(that.getUserId()) && getBankName().equals(that.getBankName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getUser(), getBankName());
+        return Objects.hash(getId(), getUserId(), getBankName());
     }
 
     @Override
     public String toString() {
         return "PaymentAccount{" +
                 "id='" + id + '\'' +
-                ", user=" + user +
+                ", userId=" + userId +
                 ", bankName='" + bankName + '\'' +
                 ", totalCash=" + totalCash +
                 '}';

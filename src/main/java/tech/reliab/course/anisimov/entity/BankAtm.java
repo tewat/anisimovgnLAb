@@ -10,7 +10,7 @@ final public class BankAtm {
     private String name;
     private Address bankOfficeAddress;
     private Boolean isOpen;
-    private Bank parentBank;
+    private String parentBankId;
     private String placementInBank;
     private Employee maintenanceEmployee;
     private Boolean isCashWithdrawalAvailable;
@@ -24,7 +24,7 @@ final public class BankAtm {
             String name,
             Address bankOfficeAddress,
             Boolean isOpen,
-            Bank parentBank,
+            String parentBankId,
             String placementInBank,
             Employee maintenanceEmployee,
             Boolean isCashWithdrawalAvailable,
@@ -36,7 +36,7 @@ final public class BankAtm {
         this.name = name;
         this.bankOfficeAddress = bankOfficeAddress;
         this.isOpen = isOpen;
-        this.parentBank = parentBank;
+        this.parentBankId = parentBankId;
         this.placementInBank = placementInBank;
         this.maintenanceEmployee = maintenanceEmployee;
         this.isCashWithdrawalAvailable = isCashWithdrawalAvailable;
@@ -62,8 +62,8 @@ final public class BankAtm {
         isOpen = open;
     }
 
-    public void setParentBank(Bank parentBank) {
-        this.parentBank = parentBank;
+    public void setParentBank(String parentBankId) {
+        this.parentBankId = parentBankId;
     }
 
     public void setPlacementInBank(String placementInBank) {
@@ -107,8 +107,8 @@ final public class BankAtm {
         return isOpen;
     }
 
-    public Bank getParentBank() {
-        return parentBank;
+    public String getParentBankId() {
+        return parentBankId;
     }
 
     public String getPlacementInBank() {
@@ -156,7 +156,7 @@ final public class BankAtm {
                 ", name='" + name + '\'' +
                 ", bankOfficeAddress=" + bankOfficeAddress +
                 ", isOpen=" + isOpen +
-                ", parentBank=" + parentBank +
+                ", parentBankId=" + parentBankId +
                 ", placementInBank='" + placementInBank + '\'' +
                 ", maintenanceEmployee=" + maintenanceEmployee +
                 ", isCashWithdrawalAvailable=" + isCashWithdrawalAvailable +

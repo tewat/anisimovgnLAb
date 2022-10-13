@@ -4,10 +4,6 @@ import tech.reliab.course.anisimov.entity.*;
 import tech.reliab.course.anisimov.entity.internalComponents.Address;
 import tech.reliab.course.anisimov.entity.internalComponents.FullName;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.time.Instant;
-import java.time.LocalDate;
 import java.util.Date;
 
 public class Main {
@@ -33,9 +29,9 @@ public class Main {
                 new FullName("Test name", "Test surname", "Test patr"),
                 new Date(),
                 "someJobPosition",
-                bank,
+                bank.getId(),
                 true,
-                bankOffice,
+                bankOffice.getId(),
                 true,
                 50_000
         );
@@ -45,7 +41,7 @@ public class Main {
                 "testName",
                 new Address("1", "Belgorod", "Kostykova 44"),
                 false,
-                bank,
+                bank.getId(),
                 "somePlacement",
                 employee,
                 true,
@@ -70,8 +66,8 @@ public class Main {
                 100_000,
                 10_000,
                 12,
-                employee,
-                paymentAccount
+                employee.getId(),
+                paymentAccount.getId()
         );
 
         User user = new User(
@@ -80,14 +76,14 @@ public class Main {
                 new Date(),
                 "somePlaceOfWork",
                 100_000,
-                bank,
-                creditAccount,
-                paymentAccount,
+                bank.getId(),
+                creditAccount.getId(),
+                paymentAccount.getId(),
                 100
         );
 
-        paymentAccount.setUser(user);
-        creditAccount.setCustomer(user);
+        paymentAccount.setUserId(user.getId());
+        creditAccount.setCustomerId(user.getId());
 
         System.out.println(bank + "\n");
         System.out.println(bankAtm + "\n");

@@ -14,9 +14,9 @@ final public class User {
     private String placeOfWork;
     private int monthlyIncome;
     // TODO: Change to lists when allowed
-    private Bank banks;
-    private CreditAccount creditAccounts;
-    private PaymentAccount paymentAccounts;
+    private String banksIds;
+    private String creditAccountsIds;
+    private String paymentAccountsIds;
     private int loanRating;
 
     //region ===================== Constructors ======================
@@ -26,9 +26,9 @@ final public class User {
             Date birthDate,
             String placeOfWork,
             int monthlyIncome,
-            Bank banks,
-            CreditAccount creditAccounts,
-            PaymentAccount paymentAccounts,
+            String banksIds,
+            String creditAccountsIds,
+            String paymentAccountsIds,
             int loanRating
     ) {
         this.id = id;
@@ -36,9 +36,9 @@ final public class User {
         this.birthDate = birthDate;
         this.placeOfWork = placeOfWork;
         this.monthlyIncome = monthlyIncome;
-        this.banks = banks;
-        this.creditAccounts = creditAccounts;
-        this.paymentAccounts = paymentAccounts;
+        this.banksIds = banksIds;
+        this.creditAccountsIds = creditAccountsIds;
+        this.paymentAccountsIds = paymentAccountsIds;
         this.loanRating = loanRating;
     }
 
@@ -47,17 +47,17 @@ final public class User {
             FullName fullName,
             Date birthDate,
             String placeOfWork,
-            Bank banks,
-            CreditAccount creditAccounts,
-            PaymentAccount paymentAccounts
+            String banksIds,
+            String creditAccountsIds,
+            String paymentAccountsIds
     ) {
         this.id = id;
         this.fullName = fullName;
         this.birthDate = birthDate;
         this.placeOfWork = placeOfWork;
-        this.banks = banks;
-        this.creditAccounts = creditAccounts;
-        this.paymentAccounts = paymentAccounts;
+        this.banksIds = banksIds;
+        this.creditAccountsIds = creditAccountsIds;
+        this.paymentAccountsIds = paymentAccountsIds;
 
         this.monthlyIncome = RandomGenerator.getDefault().nextInt(100, 10_000);
         this.loanRating = RandomGenerator.getDefault().nextInt(this.monthlyIncome / 10, this.monthlyIncome);
@@ -84,16 +84,16 @@ final public class User {
         this.monthlyIncome = monthlyIncome;
     }
 
-    public void setBanks(Bank banks) {
-        this.banks = banks;
+    public void setBanksIds(String banksIds) {
+        this.banksIds = banksIds;
     }
 
-    public void setCreditAccounts(CreditAccount creditAccounts) {
-        this.creditAccounts = creditAccounts;
+    public void setCreditAccountsIds(String creditAccountsIds) {
+        this.creditAccountsIds = creditAccountsIds;
     }
 
-    public void setPaymentAccounts(PaymentAccount paymentAccounts) {
-        this.paymentAccounts = paymentAccounts;
+    public void setPaymentAccountsIds(String paymentAccountsIds) {
+        this.paymentAccountsIds = paymentAccountsIds;
     }
 
     public void setLoanRating(int loanRating) {
@@ -121,16 +121,16 @@ final public class User {
         return monthlyIncome;
     }
 
-    public Bank getBanks() {
-        return banks;
+    public String getBanksIds() {
+        return banksIds;
     }
 
-    public CreditAccount getCreditAccounts() {
-        return creditAccounts;
+    public String getCreditAccountsIds() {
+        return creditAccountsIds;
     }
 
-    public PaymentAccount getPaymentAccounts() {
-        return paymentAccounts;
+    public String getPaymentAccountsIds() {
+        return paymentAccountsIds;
     }
 
     public int getLoanRating() {
@@ -153,21 +153,15 @@ final public class User {
 
     @Override
     public String toString() {
-        var creditAccountId = "none credit accounts";
-        var paymentAccountId = "none payment account";
-
-        if (creditAccounts != null) { creditAccountId = creditAccounts.getId(); }
-        if (paymentAccounts != null) { paymentAccountId = paymentAccounts.getId(); }
-
         return "User{" +
                 "id='" + id + '\'' +
                 ", fullName=" + fullName +
                 ", birthDate=" + birthDate +
                 ", placeOfWork='" + placeOfWork + '\'' +
                 ", monthlyIncome=" + monthlyIncome +
-                ", banks=" + banks +
-                ", creditAccountId=" + creditAccountId +
-                ", paymentAccountId=" + paymentAccountId +
+                ", banksIds=" + banksIds +
+                ", creditAccountId=" + creditAccountsIds +
+                ", paymentAccountId=" + paymentAccountsIds +
                 ", loanRating=" + loanRating +
                 '}';
     }
