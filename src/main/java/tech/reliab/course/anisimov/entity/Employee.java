@@ -11,9 +11,9 @@ final public class Employee {
     private FullName fullName;
     private Date birthDate;
     private String jobPosition;
-    private Bank bankOfWork;
+    private String bankOfWorkId;
     private Boolean isWorkingFromOffice;
-    private BankOffice office;
+    private String officeId;
     private Boolean canIssueLoans;
     private int salary;
 
@@ -23,9 +23,9 @@ final public class Employee {
             FullName fullName,
             Date birthDate,
             String jobPosition,
-            Bank bankOfWork,
+            String bankOfWorkId,
             Boolean isWorkingFromOffice,
-            BankOffice office,
+            String officeId,
             Boolean canIssueLoans,
             int salary
     ) {
@@ -33,9 +33,9 @@ final public class Employee {
         this.fullName = fullName;
         this.birthDate = birthDate;
         this.jobPosition = jobPosition;
-        this.bankOfWork = bankOfWork;
+        this.bankOfWorkId = bankOfWorkId;
         this.isWorkingFromOffice = isWorkingFromOffice;
-        this.office = office;
+        this.officeId = officeId;
         this.canIssueLoans = canIssueLoans;
         this.salary = salary;
     }
@@ -57,16 +57,16 @@ final public class Employee {
         this.jobPosition = jobPosition;
     }
 
-    public void setBankOfWork(Bank bankOfWork) {
-        this.bankOfWork = bankOfWork;
+    public void setBankOfWorkId(String bankOfWorkId) {
+        this.bankOfWorkId = bankOfWorkId;
     }
 
     public void setWorkingFromOffice(Boolean workingFromOffice) {
         isWorkingFromOffice = workingFromOffice;
     }
 
-    public void setOffice(BankOffice office) {
-        this.office = office;
+    public void setOfficeId(String officeId) {
+        this.officeId = officeId;
     }
 
     public void setCanIssueLoans(Boolean canIssueLoans) {
@@ -94,16 +94,16 @@ final public class Employee {
         return jobPosition;
     }
 
-    public Bank getBankOfWork() {
-        return bankOfWork;
+    public String getBankOfWorkId() {
+        return bankOfWorkId;
     }
 
     public Boolean getWorkingFromOffice() {
         return isWorkingFromOffice;
     }
 
-    public BankOffice getOffice() {
-        return office;
+    public String getOfficeId() {
+        return officeId;
     }
 
     public Boolean getCanIssueLoans() {
@@ -120,12 +120,12 @@ final public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return getId().equals(employee.getId()) && getFullName().equals(employee.getFullName()) && getBankOfWork().equals(employee.getBankOfWork());
+        return getId().equals(employee.getId()) && getFullName().equals(employee.getFullName()) && getBankOfWorkId().equals(employee.getBankOfWorkId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFullName(), getBankOfWork());
+        return Objects.hash(getId(), getFullName(), getBankOfWorkId());
     }
 
     @Override
@@ -135,9 +135,9 @@ final public class Employee {
                 ", fullName=" + fullName +
                 ", birthDate=" + birthDate +
                 ", jobPosition='" + jobPosition + '\'' +
-                ", bankOfWork=" + bankOfWork +
+                ", bankOfWorkId=" + bankOfWorkId +
                 ", isWorkingFromOffice=" + isWorkingFromOffice +
-                ", office=" + office +
+                ", officeId=" + officeId +
                 ", canIssueLoans=" + canIssueLoans +
                 ", salary=" + salary +
                 '}';

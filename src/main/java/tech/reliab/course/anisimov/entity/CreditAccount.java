@@ -6,7 +6,7 @@ import java.util.Objects;
 final public class CreditAccount {
     //region ===================== Properties ======================
     private String id;
-    private User customer;
+    private String customerId;
     private String bankName;
     private Date loanStartDate;
     private Date loadEndDate;
@@ -14,13 +14,13 @@ final public class CreditAccount {
     private int loanAmount;
     private int monthlyPayment;
     private int interestRate;
-    private Employee employee;
-    private PaymentAccount paymentAccount;
+    private String employeeId;
+    private String paymentAccountId;
 
     //region ===================== Constructors ======================
     public CreditAccount(
             String id,
-            User customer,
+            String customerId,
             String bankName,
             Date loanStartDate,
             Date loadEndDate,
@@ -28,11 +28,11 @@ final public class CreditAccount {
             int loanAmount,
             int monthlyPayment,
             int interestRate,
-            Employee employee,
-            PaymentAccount paymentAccount
+            String employeeId,
+            String paymentAccountId
     ) {
         this.id = id;
-        this.customer = customer;
+        this.customerId = customerId;
         this.bankName = bankName;
         this.loanStartDate = loanStartDate;
         this.loadEndDate = loadEndDate;
@@ -40,8 +40,8 @@ final public class CreditAccount {
         this.loanAmount = loanAmount;
         this.monthlyPayment = monthlyPayment;
         this.interestRate = interestRate;
-        this.employee = employee;
-        this.paymentAccount = paymentAccount;
+        this.employeeId = employeeId;
+        this.paymentAccountId = paymentAccountId;
     }
 
     //region ===================== Setters ======================
@@ -49,8 +49,8 @@ final public class CreditAccount {
         this.id = id;
     }
 
-    public void setCustomer(User customer) {
-        this.customer = customer;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
     public void setBankName(String bankName) {
@@ -81,12 +81,12 @@ final public class CreditAccount {
         this.interestRate = interestRate;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public void setPaymentAccount(PaymentAccount paymentAccount) {
-        this.paymentAccount = paymentAccount;
+    public void setPaymentAccountId(String paymentAccountId) {
+        this.paymentAccountId = paymentAccountId;
     }
 
     //region ===================== Getters ======================
@@ -94,8 +94,8 @@ final public class CreditAccount {
         return id;
     }
 
-    public User getCustomer() {
-        return customer;
+    public String getCustomerId() {
+        return customerId;
     }
 
     public String getBankName() {
@@ -126,12 +126,12 @@ final public class CreditAccount {
         return interestRate;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public String getEmployeeId() {
+        return employeeId;
     }
 
-    public PaymentAccount getPaymentAccount() {
-        return paymentAccount;
+    public String getPaymentAccountId() {
+        return paymentAccountId;
     }
 
     //region ===================== Object overrides ======================
@@ -140,19 +140,19 @@ final public class CreditAccount {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CreditAccount that = (CreditAccount) o;
-        return getId().equals(that.getId()) && getCustomer().equals(that.getCustomer()) && getBankName().equals(that.getBankName());
+        return getId().equals(that.getId()) && getCustomerId().equals(that.getCustomerId()) && getBankName().equals(that.getBankName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getCustomer(), getBankName());
+        return Objects.hash(getId(), getCustomerId(), getBankName());
     }
 
     @Override
     public String toString() {
         return "CreditAccount{" +
                 "id='" + id + '\'' +
-                ", customer=" + customer +
+                ", customerId=" + customerId +
                 ", bankName='" + bankName + '\'' +
                 ", loanStartDate=" + loanStartDate +
                 ", loadEndDate=" + loadEndDate +
@@ -160,8 +160,8 @@ final public class CreditAccount {
                 ", loanAmount=" + loanAmount +
                 ", monthlyPayment=" + monthlyPayment +
                 ", interestRate=" + interestRate +
-                ", employee=" + employee +
-                ", paymentAccount=" + paymentAccount +
+                ", employeeId=" + employeeId +
+                ", paymentAccountId=" + paymentAccountId +
                 '}';
     }
 }
