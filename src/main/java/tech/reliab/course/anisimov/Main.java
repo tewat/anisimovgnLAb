@@ -3,12 +3,25 @@ package tech.reliab.course.anisimov;
 import tech.reliab.course.anisimov.entity.*;
 import tech.reliab.course.anisimov.entity.internalComponents.Address;
 import tech.reliab.course.anisimov.entity.internalComponents.FullName;
+import tech.reliab.course.anisimov.entity.internalComponents.OpenStatus;
 
+import java.time.Instant;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
-        Bank bank = new Bank("1", "testTitle");
+        Bank bank = new Bank(
+                "1",
+                "testTitle",
+                1,
+                1,
+                1,
+                1,
+                5,
+                100_000,
+                4.5
+                );
 
         BankOffice bankOffice = new BankOffice(
                 "1",
@@ -16,7 +29,7 @@ public class Main {
                 new Address("1", "Belgorod", "Chentr 13"),
                 true,
                 false,
-                3,
+                1,
                 true,
                 true,
                 true,
@@ -24,10 +37,11 @@ public class Main {
                 100
         );
 
+        Date employeeBirthday = new Date(); employeeBirthday.setTime(883612800000L);
         Employee employee = new Employee(
                 "1",
                 new FullName("Test name", "Test surname", "Test patr"),
-                new Date(),
+                employeeBirthday,
                 "someJobPosition",
                 bank.getId(),
                 true,
@@ -40,9 +54,10 @@ public class Main {
                 "1",
                 "testName",
                 new Address("1", "Belgorod", "Kostykova 44"),
+                OpenStatus.OPEN,
                 false,
                 bank.getId(),
-                "somePlacement",
+                "testTitle",
                 employee,
                 true,
                 false,
@@ -53,16 +68,18 @@ public class Main {
         PaymentAccount paymentAccount = new PaymentAccount(
                 "1",
                 null,
-                "someBankName"
+                "testTitle"
         );
 
+        Date loanStartDate = new Date(); loanStartDate.setTime(1640995200000L);
+        Date loanEndDate = new Date(); loanEndDate.setTime(1654041600000L);
         CreditAccount creditAccount = new CreditAccount(
                 "1",
                 null,
-                "someBankName",
-                new Date(),
-                new Date(),
-                100_000,
+                "testTitle",
+                loanStartDate,
+                loanEndDate,
+                6,
                 100_000,
                 10_000,
                 12,
@@ -70,11 +87,12 @@ public class Main {
                 paymentAccount.getId()
         );
 
+        Date userBirthday = new Date(); userBirthday.setTime(252460800000L);
         User user = new User(
                 "1",
                 new FullName("Name", "Surname"),
-                new Date(),
-                "somePlaceOfWork",
+                userBirthday,
+                "testTitle",
                 100_000,
                 bank.getId(),
                 creditAccount.getId(),

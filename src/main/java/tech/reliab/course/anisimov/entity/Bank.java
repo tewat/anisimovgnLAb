@@ -39,6 +39,8 @@ final public class Bank {
     }
 
     public Bank(String id, String name) {
+        this.id = id;
+        this.name = name;
         this.officesCount = 0;
         this.atmsCount = 0;
         this.employeesCount = 0;
