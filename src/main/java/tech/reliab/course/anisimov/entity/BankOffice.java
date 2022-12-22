@@ -15,7 +15,7 @@ final public class BankOffice {
     private Boolean isApplyingForLoansAvailable;
     private Boolean isCashWithdrawalAvailable;
     private Boolean isCashDepositAvailable;
-    private int totalCash;
+    private double totalCash;
     private int rentPrice;
 
     //region ===================== Constructors ======================
@@ -29,7 +29,7 @@ final public class BankOffice {
             Boolean isApplyingForLoansAvailable,
             Boolean isCashWithdrawalAvailable,
             Boolean isCashDepositAvailable,
-            int totalCash,
+            double totalCash,
             int rentPrice
     ) {
         this.id = id;
@@ -82,7 +82,7 @@ final public class BankOffice {
         isCashDepositAvailable = cashDepositAvailable;
     }
 
-    public void setTotalCash(int totalCash) {
+    public void setTotalCash(double totalCash) {
         this.totalCash = totalCash;
     }
 
@@ -127,7 +127,7 @@ final public class BankOffice {
         return isCashDepositAvailable;
     }
 
-    public int getTotalCash() {
+    public double getTotalCash() {
         return totalCash;
     }
 

@@ -12,7 +12,7 @@ final public class Bank {
     private int employeesCount;
     private int clientsCount;
     private int rating;
-    private int totalMoney;
+    private double totalMoney;
     private double interestRate;
 
     //region ===================== Constructors ======================
@@ -24,7 +24,7 @@ final public class Bank {
             int employeesCount,
             int clientsCount,
             int rating,
-            int totalMoney,
+            double totalMoney,
             double interestRate
     ) {
         this.id = id;
@@ -79,7 +79,7 @@ final public class Bank {
         this.rating = rating;
     }
 
-    public void setTotalMoney(int totalMoney) {
+    public void setTotalMoney(double totalMoney) {
         this.totalMoney = totalMoney;
     }
 
@@ -115,7 +115,7 @@ final public class Bank {
         return rating;
     }
 
-    public int getTotalMoney() {
+    public double getTotalMoney() {
         return totalMoney;
     }
 
