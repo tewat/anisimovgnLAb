@@ -3,11 +3,9 @@ package tech.reliab.course.anisimov.service;
 import tech.reliab.course.anisimov.entity.CreditAccount;
 
 public interface CreditAccountService {
-    CreditAccount getAccount();
+    // Создание кредитного аккаунта
+    CreditAccount create(CreditAccount creditAccount);
 
-    void setAccount(CreditAccount account);
-
-    Boolean updateAccount(CreditAccount account);
-
-    Boolean deleteAccount(CreditAccount account);
+    // Списать оплату за месяц
+    void executeMonthlyPayment(CreditAccount creditAccount);
 }

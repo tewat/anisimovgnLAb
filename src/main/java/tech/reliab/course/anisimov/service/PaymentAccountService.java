@@ -3,11 +3,12 @@ package tech.reliab.course.anisimov.service;
 import tech.reliab.course.anisimov.entity.PaymentAccount;
 
 public interface PaymentAccountService {
-    PaymentAccount getAccount();
+    // Создание платежного аккаунта
+    PaymentAccount create(PaymentAccount paymentAccount);
 
-    void setAccount(PaymentAccount account);
+    // Внести деньги
+    void depositMoney(PaymentAccount account, double sum);
 
-    Boolean updateAccount(PaymentAccount account);
-
-    Boolean deleteAccount(PaymentAccount account);
+    // Снять деньги
+    void withdrawMoney(PaymentAccount account, double sum);
 }

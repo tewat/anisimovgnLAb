@@ -9,32 +9,12 @@ final public class CreditAccountServiceImpl implements CreditAccountService {
 
     //region ===================== CreditAccountService implementation ======================
     @Override
-    public CreditAccount getAccount() {
-        return creditAccount;
+    public CreditAccount create(CreditAccount creditAccount) {
+        return null;
     }
 
     @Override
-    public void setAccount(CreditAccount account) {
-        creditAccount = account;
-    }
+    public void executeMonthlyPayment(CreditAccount creditAccount) {
 
-    @Override
-    public Boolean updateAccount(CreditAccount account) {
-        if (creditAccount == account) {
-            setAccount(creditAccount);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    @Override
-    public Boolean deleteAccount(CreditAccount account) {
-        if (creditAccount == account) {
-            creditAccount = null;
-            return true;
-        } else {
-            return false;
-        }
     }
 }

@@ -3,11 +3,9 @@ package tech.reliab.course.anisimov.service;
 import tech.reliab.course.anisimov.entity.BankAtm;
 
 public interface AtmService {
-    BankAtm getAtm();
+    BankAtm create(BankAtm bankAtm);
 
-    void setAtm(BankAtm atm);
+    void depositMoney(BankAtm bankAtm, double sum);
 
-    Boolean updateAtm(BankAtm atm);
-
-    Boolean deleteAtm(BankAtm atm);
+    void withdrawMoney(BankAtm bankAtm, double sum);
 }

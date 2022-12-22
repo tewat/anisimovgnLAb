@@ -1,6 +1,6 @@
 package tech.reliab.course.anisimov.service.impl;
 
-import tech.reliab.course.anisimov.entity.Bank;
+import tech.reliab.course.anisimov.entity.*;
 import tech.reliab.course.anisimov.service.BankService;
 
 final public class BankServiceImpl implements BankService {
@@ -9,32 +9,57 @@ final public class BankServiceImpl implements BankService {
 
     //region ===================== BankService implementation ======================
     @Override
-    public Bank getBank() {
-        return bank;
+    public Bank create(Bank bank) {
+        return null;
     }
 
     @Override
-    public void setBank(Bank bank) {
-        this.bank = bank;
+    public void calculateInterestRate(Bank bank) {
+
     }
 
     @Override
-    public Boolean updateBank(Bank bank) {
-        if (this.bank == bank) {
-            setBank(bank);
-            return true;
-        } else {
-            return false;
-        }
+    public void depositMoney(Bank bank, double sum) {
+
     }
 
     @Override
-    public Boolean deleteBank(Bank bank) {
-        if (this.bank == bank) {
-            this.bank = null;
-            return true;
-        } else {
-            return false;
-        }
+    public void withdrawMoney(Bank bank, double sum) {
+
+    }
+
+    @Override
+    public void addOffice(Bank bank, BankOffice office) {
+
+    }
+
+    @Override
+    public void removeOffice(Bank bank, BankOffice office) {
+
+    }
+
+    @Override
+    public void addClient(Bank bank, User user) {
+
+    }
+
+    @Override
+    public void removeClient(Bank bank, User user) {
+
+    }
+
+    @Override
+    public void addEmployee(Bank bank, Employee employee) {
+
+    }
+
+    @Override
+    public void removeEmployee(Bank bank, Employee employee) {
+
+    }
+
+    @Override
+    public boolean isCreditAllowed(Bank bank, CreditAccount creditAccount, Employee employee) {
+        return false;
     }
 }

@@ -9,32 +9,17 @@ final public class AtmServiceImpl implements AtmService {
 
     //region ===================== AtmService implementation ======================
     @Override
-    public BankAtm getAtm() {
-        return bankAtm;
+    public BankAtm create(BankAtm bankAtm) {
+        return null;
     }
 
     @Override
-    public void setAtm(BankAtm atm) {
-        bankAtm = atm;
+    public void depositMoney(BankAtm bankAtm, double sum) {
+
     }
 
     @Override
-    public Boolean updateAtm(BankAtm atm) {
-        if (bankAtm == atm) {
-            setAtm(atm);
-            return true;
-        } else {
-            return false;
-        }
-    }
+    public void withdrawMoney(BankAtm bankAtm, double sum) {
 
-    @Override
-    public Boolean deleteAtm(BankAtm atm) {
-        if (bankAtm == atm) {
-            bankAtm = null;
-            return true;
-        } else {
-            return false;
-        }
     }
 }

@@ -1,13 +1,12 @@
 package tech.reliab.course.anisimov.service;
 
+import tech.reliab.course.anisimov.entity.BankOffice;
 import tech.reliab.course.anisimov.entity.Employee;
 
 public interface EmployeeService {
-    Employee getEmployee();
+    // Создание работника
+    Employee create(Employee employee);
 
-    void setEmployee(Employee employee);
-
-    Boolean updateEmployee(Employee employee);
-
-    Boolean deleteEmployee(Employee employee);
+    // Перевести работника в другой офис
+    void transferTo(Employee employee, BankOffice toOffice);
 }

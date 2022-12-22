@@ -9,32 +9,17 @@ final public class PaymentAccountServiceImpl implements PaymentAccountService {
 
     //region ===================== PaymentService implementation ======================
     @Override
-    public PaymentAccount getAccount() {
-        return paymentAccount;
+    public PaymentAccount create(PaymentAccount paymentAccount) {
+        return null;
     }
 
     @Override
-    public void setAccount(PaymentAccount account) {
-        this.paymentAccount = account;
+    public void depositMoney(PaymentAccount account, double sum) {
+
     }
 
     @Override
-    public Boolean updateAccount(PaymentAccount account) {
-        if (paymentAccount == account) {
-            setAccount(account);
-            return true;
-        } else {
-            return false;
-        }
-    }
+    public void withdrawMoney(PaymentAccount account, double sum) {
 
-    @Override
-    public Boolean deleteAccount(PaymentAccount account) {
-        if (paymentAccount == account) {
-            paymentAccount = null;
-            return true;
-        } else {
-            return false;
-        }
     }
 }

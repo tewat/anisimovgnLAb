@@ -1,13 +1,30 @@
 package tech.reliab.course.anisimov.service;
 
+import tech.reliab.course.anisimov.entity.BankAtm;
 import tech.reliab.course.anisimov.entity.BankOffice;
+import tech.reliab.course.anisimov.entity.Employee;
 
 public interface BankOfficeService {
-    BankOffice getOffice();
+    // Создать офис
+    BankOffice create(BankOffice bankOffice);
 
-    void setOffice(BankOffice office);
+    // Добавить банкомат в офис
+    boolean addAtm(BankOffice bankOffice, BankAtm bankAtm);
 
-    Boolean updateOffice(BankOffice office);
+    // Удалить банкомат из офиса
+    boolean removeAtm();
 
-    Boolean deleteOffice(BankOffice office);
+    // Добавить сотрудника
+    void addEmployee(BankOffice bankOffice, Employee employee);
+
+    // Удалить сотрудника
+    void removeEmployee(BankOffice bankOffice, Employee employee);
+
+    // Внести деньги в офис
+    void depositMoney(BankOffice bankOffice, double sum);
+
+    // Снять деньги из офис
+    void withdrawMoney(BankOffice bankOffice, double sum);
+
+
 }

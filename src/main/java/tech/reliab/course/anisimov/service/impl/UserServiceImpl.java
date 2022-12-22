@@ -7,33 +7,19 @@ final public class UserServiceImpl implements UserService {
     //region ===================== Properties ======================
     private User user = null;
 
+    //region ===================== UserServiceOvverides ======================
     @Override
-    public User getUser() {
-        return user;
+    public User create(User user) {
+        return null;
     }
 
     @Override
-    public void setUser(User user) {
-        this.user = user;
+    public void registerJob(User user, String jobAddress, double monthlyIncome) {
+
     }
 
     @Override
-    public Boolean updateUser(User user) {
-        if (this.user == user) {
-            setUser(user);
-            return true;
-        } else {
-            return false;
-        }
-    }
+    public void calculateRating(User user) {
 
-    @Override
-    public Boolean deleteUser(User user) {
-        if (this.user == user) {
-            user = null;
-            return true;
-        } else {
-            return false;
-        }
     }
 }
