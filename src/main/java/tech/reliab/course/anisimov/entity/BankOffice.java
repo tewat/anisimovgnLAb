@@ -11,6 +11,8 @@ final public class BankOffice {
     private Address address;
     private Boolean isOpen;
     private Boolean isAtmPlacementAvailable;
+
+    private Bank bank;
     private int atmsCount;
     private Boolean isApplyingForLoansAvailable;
     private Boolean isCashWithdrawalAvailable;
@@ -25,6 +27,7 @@ final public class BankOffice {
             Address address,
             Boolean isOpen,
             Boolean isAtmPlacementAvailable,
+            Bank bank,
             int atmsCount,
             Boolean isApplyingForLoansAvailable,
             Boolean isCashWithdrawalAvailable,
@@ -37,12 +40,28 @@ final public class BankOffice {
         this.address = address;
         this.isOpen = isOpen;
         this.isAtmPlacementAvailable = isAtmPlacementAvailable;
+        this.bank = bank;
         this.atmsCount = atmsCount;
         this.isApplyingForLoansAvailable = isApplyingForLoansAvailable;
         this.isCashWithdrawalAvailable = isCashWithdrawalAvailable;
         this.isCashDepositAvailable = isCashDepositAvailable;
         this.totalCash = totalCash;
         this.rentPrice = rentPrice;
+    }
+
+    public BankOffice(BankOffice bankOffice) {
+        this.id = bankOffice.getId();
+        this.name = bankOffice.getName();
+        this.address = bankOffice.getAddress();
+        this.isOpen = bankOffice.getOpen();
+        this.isAtmPlacementAvailable = bankOffice.getAtmPlacementAvailable();
+        this.bank = bankOffice.getBank();
+        this.atmsCount = bankOffice.getAtmsCount();
+        this.isApplyingForLoansAvailable = bankOffice.getApplyingForLoansAvailable();
+        this.isCashWithdrawalAvailable = bankOffice.getCashWithdrawalAvailable();
+        this.isCashDepositAvailable = bankOffice.getCashDepositAvailable();
+        this.totalCash = bankOffice.getTotalCash();
+        this.rentPrice = bankOffice.getRentPrice();
     }
 
     //region ===================== Setters ======================
@@ -65,6 +84,8 @@ final public class BankOffice {
     public void setAtmPlacementAvailable(Boolean atmPlacementAvailable) {
         isAtmPlacementAvailable = atmPlacementAvailable;
     }
+
+    public void setBank(Bank bank) { this.bank = bank; }
 
     public void setAtmsCount(int atmsCount) {
         this.atmsCount = atmsCount;
@@ -111,6 +132,8 @@ final public class BankOffice {
         return isAtmPlacementAvailable;
     }
 
+    public Bank getBank() { return this.bank; }
+
     public int getAtmsCount() {
         return atmsCount;
     }
@@ -155,6 +178,7 @@ final public class BankOffice {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", address=" + address +
+                ", bank=" + bank.getName() +
                 ", isOpen=" + isOpen +
                 ", isAtmPlacementAvailable=" + isAtmPlacementAvailable +
                 ", atmsCount=" + atmsCount +

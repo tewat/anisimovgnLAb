@@ -48,6 +48,21 @@ final public class BankAtm {
         this.costService = costService;
     }
 
+    public BankAtm(BankAtm bankAtm) {
+        this.id = bankAtm.getId();
+        this.name = bankAtm.getName();
+        this.bankOffice = bankAtm.bankOffice;
+        this.status = bankAtm.getStatus();
+        this.isOpen = bankAtm.getOpen();
+        this.bank = bankAtm.getBank();
+        this.placementInBank = bankAtm.getPlacementInBank();
+        this.maintenanceEmployee = bankAtm.getMaintenanceEmployee();
+        this.isCashWithdrawalAvailable = bankAtm.getCashWithdrawalAvailable();
+        this.isCashDepositAvailable = bankAtm.getCashDepositAvailable();
+        this.totalCash = bankAtm.getTotalCash();
+        this.costService = bankAtm.getCostService();
+    }
+
     //region ===================== Setters ======================
     public void setId(String id) {
         this.id = id;

@@ -23,7 +23,7 @@ final public class AtmServiceImpl implements AtmService {
         assert bankAtm != null;
 
         bankOfficeService.addAtm(bankAtm.getBankOffice(), bankAtm);
-        return bankAtm;
+        return new BankAtm(bankAtm);
     }
 
     @Override
