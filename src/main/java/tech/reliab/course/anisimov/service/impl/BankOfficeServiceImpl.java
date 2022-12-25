@@ -157,7 +157,7 @@ final public class BankOfficeServiceImpl implements BankOfficeService {
         if (office == null || office.getBank() == null) { return; }
 
         if (office.getCashWithdrawalAvailable()) {
-            if (office.getTotalCash() < sum) {
+            if (office.getTotalCash() >= sum) {
                 office.setTotalCash(office.getTotalCash() - sum);
                 this.bankService.withdrawMoney(office.getBank().getId(), sum);
             } else {

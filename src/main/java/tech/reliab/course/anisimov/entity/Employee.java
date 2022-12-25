@@ -2,6 +2,7 @@ package tech.reliab.course.anisimov.entity;
 
 import tech.reliab.course.anisimov.entity.internalComponents.FullName;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -9,7 +10,7 @@ final public class Employee {
     //region ===================== Properties ======================
     private String id;
     private FullName fullName;
-    private Date birthDate;
+    private LocalDate birthDate;
     private String jobPosition;
     private Bank bankOfWork;
     private Boolean isWorkingFromOffice;
@@ -21,7 +22,7 @@ final public class Employee {
     public Employee(
             String id,
             FullName fullName,
-            Date birthDate,
+            LocalDate birthDate,
             String jobPosition,
             Bank bankOfWork,
             Boolean isWorkingFromOffice,
@@ -40,6 +41,18 @@ final public class Employee {
         this.salary = salary;
     }
 
+    public Employee(Employee employee) {
+        this.id = employee.id;
+        this.fullName = employee.fullName;
+        this.birthDate = employee.birthDate;
+        this.jobPosition = employee.jobPosition;
+        this.bankOfWork = employee.bankOfWork;
+        this.isWorkingFromOffice = employee.isWorkingFromOffice;
+        this.office = employee.office;
+        this.canIssueLoans = employee.canIssueLoans;
+        this.salary = employee.salary;
+    }
+
     //region ===================== Setters ======================
     public void setId(String id) {
         this.id = id;
@@ -49,7 +62,7 @@ final public class Employee {
         this.fullName = fullName;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -86,7 +99,7 @@ final public class Employee {
         return fullName;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 

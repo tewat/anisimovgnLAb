@@ -21,7 +21,7 @@ public interface BankService {
     List<Bank> getAllBanks();
 
     // Вычисление процентной ставки
-    void calculateInterestRate(String bankId);
+    void calculateInterestRate(Bank bank);
 
     // Внести деньги
     void depositMoney(String bankId, double sum);
@@ -48,5 +48,5 @@ public interface BankService {
     Boolean removeEmployee(String bankId, String employeeId);
 
     // Одобрение кредита
-    boolean isCreditAllowed(String bankId, CreditAccount creditAccount, Employee employee);
+    Boolean isCreditAllowed(String bankId, CreditAccount creditAccount, Employee employee);
 }

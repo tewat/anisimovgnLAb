@@ -30,7 +30,7 @@ final public class AtmServiceImpl implements AtmService {
 
     @Override
     public @Nullable BankAtm addAtm(@NotNull BankAtm bankAtm) {
-        if (!this.bankAtmMap.containsKey(bankAtm.getId())) {
+        if (this.bankAtmMap.containsKey(bankAtm.getId())) {
             System.out.println("Банкомат с таким id уже существует в системе");
             return null;
         }
@@ -119,10 +119,10 @@ final public class AtmServiceImpl implements AtmService {
         switch (atm.getStatus()) {
             case OPEN -> {
                 if (atm.getCashWithdrawalAvailable()) {
-                    if (atm.getTotalCash() < sum) {
+                    if (atm.getTotalCash() >= sum) {
                         BankOffice office = atm.getBankOffice();
                         Bank bank = atm.getBank();
-                        double newSum = atm.getTotalCash();
+                        double newSum = atm.getTotalCash() - sum;
 
                         atm.setTotalCash(newSum);
                         office.setTotalCash(office.getTotalCash() - newSum);
