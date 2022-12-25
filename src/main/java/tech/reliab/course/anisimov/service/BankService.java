@@ -2,37 +2,51 @@ package tech.reliab.course.anisimov.service;
 
 import tech.reliab.course.anisimov.entity.*;
 
+import java.util.List;
+
 public interface BankService {
     // Создание банка
     Bank create(Bank bank);
 
+    // Добавление банка
+    Bank addBank(Bank bank);
+
+    // Получение банка по id
+    Bank getBankById(String bankId);
+
+    // Удалить банк по айди
+    Boolean deleteBank(String bankId);
+
+    // Получить все банки
+    List<Bank> getAllBanks();
+
     // Вычисление процентной ставки
-    void calculateInterestRate(Bank bank);
+    void calculateInterestRate(String bankId);
 
     // Внести деньги
-    void depositMoney(Bank bank, double sum);
+    void depositMoney(String bankId, double sum);
 
     // Снять деньги
-    void withdrawMoney(Bank bank, double sum);
+    void withdrawMoney(String bankId, double sum);
 
     // Добавить офис
-    void addOffice(Bank bank, BankOffice office);
+    void addOffice(String bankId, BankOffice office);
 
     // Удалить офис
-    void removeOffice(Bank bank, BankOffice office);
+    Boolean removeOffice(String bankId, String officeId);
 
     // Добавить новго клиента
-    void addClient(Bank bank, User user);
+    Boolean addClient(String bankId, User user);
 
     // Удаление клиента
-    void removeClient(Bank bank, User user);
+    Boolean removeClient(String bankId, String userId);
 
     // Добавить работника
-    void addEmployee(Bank bank, Employee employee);
+    Boolean addEmployee(String bankId, Employee employee);
 
     // Удалить работника
-    void removeEmployee(Bank bank, Employee employee);
+    Boolean removeEmployee(String bankId, String employeeId);
 
     // Одобрение кредита
-    boolean isCreditAllowed(Bank bank, CreditAccount creditAccount, Employee employee);
+    boolean isCreditAllowed(String bankId, CreditAccount creditAccount, Employee employee);
 }

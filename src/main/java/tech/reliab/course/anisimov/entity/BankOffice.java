@@ -11,9 +11,9 @@ final public class BankOffice {
     private Address address;
     private Boolean isOpen;
     private Boolean isAtmPlacementAvailable;
-
     private Bank bank;
     private int atmsCount;
+    private int employeesCount;
     private Boolean isApplyingForLoansAvailable;
     private Boolean isCashWithdrawalAvailable;
     private Boolean isCashDepositAvailable;
@@ -29,7 +29,7 @@ final public class BankOffice {
             Boolean isAtmPlacementAvailable,
             Bank bank,
             int atmsCount,
-            Boolean isApplyingForLoansAvailable,
+            int employeesCount, Boolean isApplyingForLoansAvailable,
             Boolean isCashWithdrawalAvailable,
             Boolean isCashDepositAvailable,
             double totalCash,
@@ -42,6 +42,7 @@ final public class BankOffice {
         this.isAtmPlacementAvailable = isAtmPlacementAvailable;
         this.bank = bank;
         this.atmsCount = atmsCount;
+        this.employeesCount = employeesCount;
         this.isApplyingForLoansAvailable = isApplyingForLoansAvailable;
         this.isCashWithdrawalAvailable = isCashWithdrawalAvailable;
         this.isCashDepositAvailable = isCashDepositAvailable;
@@ -62,6 +63,7 @@ final public class BankOffice {
         this.isCashDepositAvailable = bankOffice.getCashDepositAvailable();
         this.totalCash = bankOffice.getTotalCash();
         this.rentPrice = bankOffice.getRentPrice();
+        this.employeesCount = bankOffice.getEmployeesCount();
     }
 
     //region ===================== Setters ======================
@@ -90,6 +92,8 @@ final public class BankOffice {
     public void setAtmsCount(int atmsCount) {
         this.atmsCount = atmsCount;
     }
+
+    public void setEmployeesCount(int employeesCount) { this.employeesCount = employeesCount; }
 
     public void setApplyingForLoansAvailable(Boolean applyingForLoansAvailable) {
         isApplyingForLoansAvailable = applyingForLoansAvailable;
@@ -138,6 +142,10 @@ final public class BankOffice {
         return atmsCount;
     }
 
+    public int getEmployeesCount() {
+        return employeesCount;
+    }
+
     public Boolean getApplyingForLoansAvailable() {
         return isApplyingForLoansAvailable;
     }
@@ -182,6 +190,7 @@ final public class BankOffice {
                 ", isOpen=" + isOpen +
                 ", isAtmPlacementAvailable=" + isAtmPlacementAvailable +
                 ", atmsCount=" + atmsCount +
+                ", employeesCount" + employeesCount +
                 ", isApplyingForLoansAvailable=" + isApplyingForLoansAvailable +
                 ", isCashWithdrawalAvailable=" + isCashWithdrawalAvailable +
                 ", isCashDepositAvailable=" + isCashDepositAvailable +
