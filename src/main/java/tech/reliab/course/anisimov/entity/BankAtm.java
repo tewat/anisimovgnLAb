@@ -1,6 +1,7 @@
 package tech.reliab.course.anisimov.entity;
 
 import tech.reliab.course.anisimov.entity.internalComponents.Address;
+import tech.reliab.course.anisimov.entity.internalComponents.OpenStatus;
 
 import java.util.Objects;
 
@@ -9,6 +10,7 @@ final public class BankAtm {
     private String id;
     private String name;
     private Address bankOfficeAddress;
+    private OpenStatus status;
     private Boolean isOpen;
     private String parentBankId;
     private String placementInBank;
@@ -23,6 +25,7 @@ final public class BankAtm {
             String id,
             String name,
             Address bankOfficeAddress,
+            OpenStatus status,
             Boolean isOpen,
             String parentBankId,
             String placementInBank,
@@ -35,6 +38,7 @@ final public class BankAtm {
         this.id = id;
         this.name = name;
         this.bankOfficeAddress = bankOfficeAddress;
+        this.status = status;
         this.isOpen = isOpen;
         this.parentBankId = parentBankId;
         this.placementInBank = placementInBank;
@@ -57,6 +61,8 @@ final public class BankAtm {
     public void setBankOfficeAddress(Address bankOfficeAddress) {
         this.bankOfficeAddress = bankOfficeAddress;
     }
+
+    public void setStatus(OpenStatus status) { this.status = status; }
 
     public void setOpen(Boolean open) {
         isOpen = open;
@@ -103,6 +109,7 @@ final public class BankAtm {
         return bankOfficeAddress;
     }
 
+    public OpenStatus getStatus() { return this.status; }
     public Boolean getOpen() {
         return isOpen;
     }
@@ -155,6 +162,7 @@ final public class BankAtm {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", bankOfficeAddress=" + bankOfficeAddress +
+                ", status=" + status +
                 ", isOpen=" + isOpen +
                 ", parentBankId=" + parentBankId +
                 ", placementInBank='" + placementInBank + '\'' +
