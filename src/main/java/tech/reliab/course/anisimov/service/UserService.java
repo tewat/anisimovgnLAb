@@ -13,6 +13,9 @@ public interface UserService {
     // Добавить пользователя
     User addUser(User user);
 
+    // Получение всех пользователей
+    List<User> getAllUsers();
+
     // Получение пользователя по айди
     User getUserById(String userId);
 

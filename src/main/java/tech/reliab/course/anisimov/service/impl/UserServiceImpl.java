@@ -12,10 +12,7 @@ import tech.reliab.course.anisimov.service.PaymentAccountService;
 import tech.reliab.course.anisimov.service.UserService;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 final public class UserServiceImpl implements UserService {
     //region ===================== Properties ======================
@@ -44,6 +41,11 @@ final public class UserServiceImpl implements UserService {
         }
 
         return null;
+    }
+
+    @Override
+    public @NotNull List<User> getAllUsers() {
+        return new ArrayList<>(this.userMap.values());
     }
 
     @Override

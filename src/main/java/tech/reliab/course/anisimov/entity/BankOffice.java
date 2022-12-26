@@ -8,7 +8,7 @@ final public class BankOffice {
     //region ===================== Properties ======================
     private String id;
     private String name;
-    private Address address;
+    private String address;
     private Boolean isOpen;
     private Boolean isAtmPlacementAvailable;
     private Bank bank;
@@ -24,7 +24,7 @@ final public class BankOffice {
     public BankOffice(
             String id,
             String name,
-            Address address,
+            String address,
             Boolean isOpen,
             Boolean isAtmPlacementAvailable,
             Bank bank,
@@ -75,7 +75,7 @@ final public class BankOffice {
         this.name = name;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
@@ -124,7 +124,7 @@ final public class BankOffice {
         return name;
     }
 
-    public Address getAddress() {
+    public String getAddress() {
         return address;
     }
 

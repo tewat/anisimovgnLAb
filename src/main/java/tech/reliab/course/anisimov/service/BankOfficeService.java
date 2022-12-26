@@ -13,6 +13,9 @@ public interface BankOfficeService {
     // Добавить офис
     BankOffice addOffice(BankOffice office);
 
+    // Получить все офисы
+    List<BankOffice> getAllOffices();
+
     // Получить офис по айди
     BankOffice getOfficeById(String officeId);
 

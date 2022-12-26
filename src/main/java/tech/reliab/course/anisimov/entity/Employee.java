@@ -9,7 +9,7 @@ import java.util.Objects;
 final public class Employee {
     //region ===================== Properties ======================
     private String id;
-    private FullName fullName;
+    private String fullName;
     private LocalDate birthDate;
     private String jobPosition;
     private Bank bankOfWork;
@@ -21,7 +21,7 @@ final public class Employee {
     //region ===================== Constructors ======================
     public Employee(
             String id,
-            FullName fullName,
+            String fullName,
             LocalDate birthDate,
             String jobPosition,
             Bank bankOfWork,
@@ -58,7 +58,7 @@ final public class Employee {
         this.id = id;
     }
 
-    public void setFullName(FullName fullName) {
+    public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 
@@ -95,7 +95,7 @@ final public class Employee {
         return id;
     }
 
-    public FullName getFullName() {
+    public String getFullName() {
         return fullName;
     }
 

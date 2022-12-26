@@ -10,7 +10,7 @@ import java.util.random.RandomGenerator;
 final public class User {
     //region ===================== Properties ======================
     private String id;
-    private FullName fullName;
+    private String fullName;
     private LocalDate birthDate;
     private String placeOfWork;
     private double monthlyIncome;
@@ -22,7 +22,7 @@ final public class User {
     //region ===================== Constructors ======================
     public User(
             String id,
-            FullName fullName,
+            String fullName,
             LocalDate birthDate,
             String placeOfWork,
             double monthlyIncome,
@@ -44,7 +44,7 @@ final public class User {
 
     public User(
             String id,
-            FullName fullName,
+            String fullName,
             LocalDate birthDate,
             String placeOfWork,
             Bank bank,
@@ -79,7 +79,7 @@ final public class User {
         this.id = id;
     }
 
-    public void setFullName(FullName fullName) {
+    public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 
@@ -116,7 +116,7 @@ final public class User {
         return id;
     }
 
-    public FullName getFullName() {
+    public String getFullName() {
         return fullName;
     }
 

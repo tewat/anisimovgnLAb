@@ -10,10 +10,7 @@ import tech.reliab.course.anisimov.service.AtmService;
 import tech.reliab.course.anisimov.service.BankOfficeService;
 import tech.reliab.course.anisimov.service.BankService;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 final public class BankOfficeServiceImpl implements BankOfficeService {
     //region ===================== Properties ======================
@@ -48,6 +45,11 @@ final public class BankOfficeServiceImpl implements BankOfficeService {
             System.out.println("У офиса не указан банк");
             return null;
         }
+    }
+
+    @Override
+    public @NotNull List<BankOffice> getAllOffices() {
+        return new ArrayList<>(bankOfficeMap.values());
     }
 
     @Override
