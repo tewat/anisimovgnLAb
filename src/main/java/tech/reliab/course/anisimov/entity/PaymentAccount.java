@@ -5,23 +5,30 @@ import java.util.Objects;
 final public class PaymentAccount {
     //region ===================== Properties ======================
     private String id;
-    private String userId;
-    private String bankName;
-    private int totalCash;
+    private User user;
+    private Bank bank;
+    private double totalCash;
 
     //region ===================== Constructors ======================
-    public PaymentAccount(String id, String userId, String bankName, int totalCash) {
+    public PaymentAccount(String id, User user, Bank bank, double totalCash) {
         this.id = id;
-        this.userId = userId;
-        this.bankName = bankName;
+        this.user = user;
+        this.bank = bank;
         this.totalCash = totalCash;
     }
 
-    public PaymentAccount(String id, String userId, String bankName) {
+    public PaymentAccount(String id, User user, Bank bank) {
         this.id = id;
-        this.userId = userId;
-        this.bankName = bankName;
+        this.user = user;
+        this.bank = bank;
         this.totalCash = 0;
+    }
+
+    public PaymentAccount(PaymentAccount account) {
+        this.id = account.id;
+        this.user = account.user;
+        this.bank = account.bank;
+        this.totalCash = account.totalCash;
     }
 
     //region ===================== Setters ======================
@@ -29,15 +36,15 @@ final public class PaymentAccount {
         this.id = id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserId(User user) {
+        this.user = user;
     }
 
-    public void setBankName(String bankName) {
-        this.bankName = bankName;
+    public void setBank(Bank bank) {
+        this.bank = bank;
     }
 
-    public void setTotalCash(int totalCash) {
+    public void setTotalCash(double totalCash) {
         this.totalCash = totalCash;
     }
 
@@ -46,15 +53,15 @@ final public class PaymentAccount {
         return id;
     }
 
-    public String getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public String getBankName() {
-        return bankName;
+    public Bank getBank() {
+        return bank;
     }
 
-    public int getTotalCash() {
+    public double getTotalCash() {
         return totalCash;
     }
 
@@ -64,21 +71,23 @@ final public class PaymentAccount {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PaymentAccount that = (PaymentAccount) o;
-        return getId().equals(that.getId()) && getUserId().equals(that.getUserId()) && getBankName().equals(that.getBankName());
+        return getId().equals(that.getId()) &&
+                getUser().getId().equals(that.getUser().getId()) &&
+                getBank().getId().equals(that.getBank().getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getUserId(), getBankName());
+        return Objects.hash(getId(), getUser().getId(), getBank().getId());
     }
 
     @Override
     public String toString() {
-        return "PaymentAccount{" +
-                "id='" + id + '\'' +
-                ", userId=" + userId +
-                ", bankName='" + bankName + '\'' +
-                ", totalCash=" + totalCash +
-                '}';
+        return "PaymentAccount{" + "\n" +
+                "id='" + id + "\n" +
+                "userName=" + user.getFullName() + "\n" +
+                "bankName='" + bank.getName() + "\n" +
+                "totalCash=" + totalCash + "\n" +
+                '}' + "\n";
     }
 }

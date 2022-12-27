@@ -2,12 +2,23 @@ package tech.reliab.course.anisimov.service;
 
 import tech.reliab.course.anisimov.entity.CreditAccount;
 
+import java.util.List;
+
 public interface CreditAccountService {
-    CreditAccount getAccount();
+    // Создание кредитного аккаунта
+    CreditAccount create(CreditAccount creditAccount);
 
-    void setAccount(CreditAccount account);
+    // Добавить кредитный аккаунт
+    CreditAccount addAccount(CreditAccount account);
 
-    Boolean updateAccount(CreditAccount account);
+    // Удалить делитный аккаунт
+    Boolean deleteAccount(String accountId);
 
-    Boolean deleteAccount(CreditAccount account);
+    // Получить кредтиный аккаунты пользователя
+    List<CreditAccount> getUsersAccounts(String userId);
+
+    // Списать оплату за месяц
+    void executeMonthlyPayment(CreditAccount creditAccount);
+
+    String stringRepresentation(String accountId);
 }

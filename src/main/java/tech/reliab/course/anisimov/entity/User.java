@@ -2,6 +2,7 @@ package tech.reliab.course.anisimov.entity;
 
 import tech.reliab.course.anisimov.entity.internalComponents.FullName;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 import java.util.random.RandomGenerator;
@@ -9,70 +10,80 @@ import java.util.random.RandomGenerator;
 final public class User {
     //region ===================== Properties ======================
     private String id;
-    private FullName fullName;
-    private Date birthDate;
+    private String fullName;
+    private LocalDate birthDate;
     private String placeOfWork;
-    private int monthlyIncome;
-    // TODO: Change to lists when allowed
-    private String banksIds;
-    private String creditAccountsIds;
-    private String paymentAccountsIds;
-    private int loanRating;
+    private double monthlyIncome;
+    private Bank bank;
+    private int creditAccountsCount;
+    private int paymentAccountCount;
+    private double loanRating;
 
     //region ===================== Constructors ======================
     public User(
             String id,
-            FullName fullName,
-            Date birthDate,
+            String fullName,
+            LocalDate birthDate,
             String placeOfWork,
-            int monthlyIncome,
-            String banksIds,
-            String creditAccountsIds,
-            String paymentAccountsIds,
-            int loanRating
+            double monthlyIncome,
+            Bank bank,
+            int creditAccountsCount,
+            int paymentAccountsCount,
+            double loanRating
     ) {
         this.id = id;
         this.fullName = fullName;
         this.birthDate = birthDate;
         this.placeOfWork = placeOfWork;
         this.monthlyIncome = monthlyIncome;
-        this.banksIds = banksIds;
-        this.creditAccountsIds = creditAccountsIds;
-        this.paymentAccountsIds = paymentAccountsIds;
+        this.bank = bank;
+        this.creditAccountsCount = creditAccountsCount;
+        this.paymentAccountCount = paymentAccountsCount;
         this.loanRating = loanRating;
     }
 
     public User(
             String id,
-            FullName fullName,
-            Date birthDate,
+            String fullName,
+            LocalDate birthDate,
             String placeOfWork,
-            String banksIds,
-            String creditAccountsIds,
-            String paymentAccountsIds
+            Bank bank,
+            int creditAccountsCount,
+            int paymentAccountCount
     ) {
         this.id = id;
         this.fullName = fullName;
         this.birthDate = birthDate;
         this.placeOfWork = placeOfWork;
-        this.banksIds = banksIds;
-        this.creditAccountsIds = creditAccountsIds;
-        this.paymentAccountsIds = paymentAccountsIds;
+        this.bank = bank;
+        this.creditAccountsCount = creditAccountsCount;
+        this.paymentAccountCount = paymentAccountCount;
 
         this.monthlyIncome = RandomGenerator.getDefault().nextInt(100, 10_000);
-        this.loanRating = RandomGenerator.getDefault().nextInt(this.monthlyIncome / 10, this.monthlyIncome);
+        this.loanRating = RandomGenerator.getDefault().nextDouble(this.monthlyIncome / 10.0, this.monthlyIncome);
     }
 
+    public User(User user) {
+        this.id = user.id;
+        this.fullName = user.fullName;
+        this.birthDate = user.birthDate;
+        this.placeOfWork = user.placeOfWork;
+        this.monthlyIncome = user.monthlyIncome;
+        this.bank = user.bank;
+        this.creditAccountsCount = user.creditAccountsCount;
+        this.paymentAccountCount = user.paymentAccountCount;
+        this.loanRating = user.loanRating;
+    }
     //region ===================== Setters ======================
     public void setId(String id) {
         this.id = id;
     }
 
-    public void setFullName(FullName fullName) {
+    public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -80,23 +91,23 @@ final public class User {
         this.placeOfWork = placeOfWork;
     }
 
-    public void setMonthlyIncome(int monthlyIncome) {
+    public void setMonthlyIncome(double monthlyIncome) {
         this.monthlyIncome = monthlyIncome;
     }
 
-    public void setBanksIds(String banksIds) {
-        this.banksIds = banksIds;
+    public void setBank(Bank bank) {
+        this.bank = bank;
     }
 
-    public void setCreditAccountsIds(String creditAccountsIds) {
-        this.creditAccountsIds = creditAccountsIds;
+    public void setCreditAccountsCount(int creditAccountsCount) {
+        this.creditAccountsCount = creditAccountsCount;
     }
 
-    public void setPaymentAccountsIds(String paymentAccountsIds) {
-        this.paymentAccountsIds = paymentAccountsIds;
+    public void setPaymentAccountsCount(int paymentAccountCount) {
+        this.paymentAccountCount = paymentAccountCount;
     }
 
-    public void setLoanRating(int loanRating) {
+    public void setLoanRating(double loanRating) {
         this.loanRating = loanRating;
     }
 
@@ -105,11 +116,11 @@ final public class User {
         return id;
     }
 
-    public FullName getFullName() {
+    public String getFullName() {
         return fullName;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
@@ -117,23 +128,23 @@ final public class User {
         return placeOfWork;
     }
 
-    public int getMonthlyIncome() {
+    public double getMonthlyIncome() {
         return monthlyIncome;
     }
 
-    public String getBanksIds() {
-        return banksIds;
+    public Bank getBank() {
+        return bank;
     }
 
-    public String getCreditAccountsIds() {
-        return creditAccountsIds;
+    public int getCreditAccountsCount() {
+        return creditAccountsCount;
     }
 
-    public String getPaymentAccountsIds() {
-        return paymentAccountsIds;
+    public int getPaymentAccountsCount() {
+        return paymentAccountCount;
     }
 
-    public int getLoanRating() {
+    public double getLoanRating() {
         return loanRating;
     }
 
@@ -153,16 +164,16 @@ final public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", fullName=" + fullName +
-                ", birthDate=" + birthDate +
-                ", placeOfWork='" + placeOfWork + '\'' +
-                ", monthlyIncome=" + monthlyIncome +
-                ", banksIds=" + banksIds +
-                ", creditAccountId=" + creditAccountsIds +
-                ", paymentAccountId=" + paymentAccountsIds +
-                ", loanRating=" + loanRating +
-                '}';
+        return "User{" + "\n" +
+                "id='" + id + "\n" +
+                "fullName=" + fullName + "\n" +
+                "birthDate=" + birthDate + "\n" +
+                "placeOfWork='" + placeOfWork + "\n" +
+                "monthlyIncome=" + monthlyIncome + "\n" +
+                "banksName=" + bank.getName() + "\n" +
+                "creditAccountCount=" + creditAccountsCount + "\n" +
+                "paymentAccountCount=" + paymentAccountCount + "\n" +
+                "loanRating=" + loanRating + "\n" +
+                '}' + "\n";
     }
 }

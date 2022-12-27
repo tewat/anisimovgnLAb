@@ -1,13 +1,28 @@
 package tech.reliab.course.anisimov.service;
 
+import tech.reliab.course.anisimov.entity.BankOffice;
 import tech.reliab.course.anisimov.entity.Employee;
 
+import java.util.List;
+
 public interface EmployeeService {
-    Employee getEmployee();
+    // Создание работника
+    Employee create(Employee employee);
 
-    void setEmployee(Employee employee);
+    // Добавить работника
+    Employee addEmployee(Employee employee);
 
-    Boolean updateEmployee(Employee employee);
+    // Получить работника по айди
+    Employee getEmployeeById(String employeeId);
 
-    Boolean deleteEmployee(Employee employee);
+    // Удалить работника
+    Boolean deleteEmployee(String employeeId);
+
+    // Получить работников офиса
+    List<Employee> getEmployeesByOfficeId(String officeId);
+
+    // Получить работников банка
+    List<Employee> getEmployeesByBank(String bankId);
+
+    String stringRepresentation(String employeeId);
 }

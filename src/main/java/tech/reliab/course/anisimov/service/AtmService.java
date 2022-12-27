@@ -2,12 +2,34 @@ package tech.reliab.course.anisimov.service;
 
 import tech.reliab.course.anisimov.entity.BankAtm;
 
+import java.util.List;
+
 public interface AtmService {
-    BankAtm getAtm();
+    // Создать банкомат
+    BankAtm create(BankAtm bankAtm);
 
-    void setAtm(BankAtm atm);
+    // Добавить банкомат
+    BankAtm addAtm(BankAtm bankAtm);
 
-    Boolean updateAtm(BankAtm atm);
+    // Получить банкомат по айди
+    BankAtm getAtmById(String atmId);
 
-    Boolean deleteAtm(BankAtm atm);
+    // Получить все бакнкоматы банка
+    List<BankAtm> getAllAtms(String bankId);
+
+    // Получить все банкоматы офисы
+    List<BankAtm> getAtmsByOfficeId(String officeId);
+
+    // Получить вс банкоматы банка
+    List<BankAtm> getAtmsByBankId(String bankId);
+
+    // Удалить банкомат
+    Boolean deleteAtm(String atmId);
+
+    // Внести деньги
+    void depositMoney(String atmId, double sum);
+
+    void withdrawMoney(String atmId, double sum);
+
+    String stringRepresentation(String atmId);
 }

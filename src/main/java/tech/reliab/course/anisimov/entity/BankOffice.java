@@ -8,28 +8,31 @@ final public class BankOffice {
     //region ===================== Properties ======================
     private String id;
     private String name;
-    private Address address;
+    private String address;
     private Boolean isOpen;
     private Boolean isAtmPlacementAvailable;
+    private Bank bank;
     private int atmsCount;
+    private int employeesCount;
     private Boolean isApplyingForLoansAvailable;
     private Boolean isCashWithdrawalAvailable;
     private Boolean isCashDepositAvailable;
-    private int totalCash;
+    private double totalCash;
     private int rentPrice;
 
     //region ===================== Constructors ======================
     public BankOffice(
             String id,
             String name,
-            Address address,
+            String address,
             Boolean isOpen,
             Boolean isAtmPlacementAvailable,
+            Bank bank,
             int atmsCount,
-            Boolean isApplyingForLoansAvailable,
+            int employeesCount, Boolean isApplyingForLoansAvailable,
             Boolean isCashWithdrawalAvailable,
             Boolean isCashDepositAvailable,
-            int totalCash,
+            double totalCash,
             int rentPrice
     ) {
         this.id = id;
@@ -37,12 +40,30 @@ final public class BankOffice {
         this.address = address;
         this.isOpen = isOpen;
         this.isAtmPlacementAvailable = isAtmPlacementAvailable;
+        this.bank = bank;
         this.atmsCount = atmsCount;
+        this.employeesCount = employeesCount;
         this.isApplyingForLoansAvailable = isApplyingForLoansAvailable;
         this.isCashWithdrawalAvailable = isCashWithdrawalAvailable;
         this.isCashDepositAvailable = isCashDepositAvailable;
         this.totalCash = totalCash;
         this.rentPrice = rentPrice;
+    }
+
+    public BankOffice(BankOffice bankOffice) {
+        this.id = bankOffice.getId();
+        this.name = bankOffice.getName();
+        this.address = bankOffice.getAddress();
+        this.isOpen = bankOffice.getOpen();
+        this.isAtmPlacementAvailable = bankOffice.getAtmPlacementAvailable();
+        this.bank = bankOffice.getBank();
+        this.atmsCount = bankOffice.getAtmsCount();
+        this.isApplyingForLoansAvailable = bankOffice.getApplyingForLoansAvailable();
+        this.isCashWithdrawalAvailable = bankOffice.getCashWithdrawalAvailable();
+        this.isCashDepositAvailable = bankOffice.getCashDepositAvailable();
+        this.totalCash = bankOffice.getTotalCash();
+        this.rentPrice = bankOffice.getRentPrice();
+        this.employeesCount = bankOffice.getEmployeesCount();
     }
 
     //region ===================== Setters ======================
@@ -54,7 +75,7 @@ final public class BankOffice {
         this.name = name;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
@@ -66,9 +87,13 @@ final public class BankOffice {
         isAtmPlacementAvailable = atmPlacementAvailable;
     }
 
+    public void setBank(Bank bank) { this.bank = bank; }
+
     public void setAtmsCount(int atmsCount) {
         this.atmsCount = atmsCount;
     }
+
+    public void setEmployeesCount(int employeesCount) { this.employeesCount = employeesCount; }
 
     public void setApplyingForLoansAvailable(Boolean applyingForLoansAvailable) {
         isApplyingForLoansAvailable = applyingForLoansAvailable;
@@ -82,7 +107,7 @@ final public class BankOffice {
         isCashDepositAvailable = cashDepositAvailable;
     }
 
-    public void setTotalCash(int totalCash) {
+    public void setTotalCash(double totalCash) {
         this.totalCash = totalCash;
     }
 
@@ -99,7 +124,7 @@ final public class BankOffice {
         return name;
     }
 
-    public Address getAddress() {
+    public String getAddress() {
         return address;
     }
 
@@ -111,8 +136,14 @@ final public class BankOffice {
         return isAtmPlacementAvailable;
     }
 
+    public Bank getBank() { return this.bank; }
+
     public int getAtmsCount() {
         return atmsCount;
+    }
+
+    public int getEmployeesCount() {
+        return employeesCount;
     }
 
     public Boolean getApplyingForLoansAvailable() {
@@ -127,7 +158,7 @@ final public class BankOffice {
         return isCashDepositAvailable;
     }
 
-    public int getTotalCash() {
+    public double getTotalCash() {
         return totalCash;
     }
 
@@ -151,18 +182,20 @@ final public class BankOffice {
 
     @Override
     public String toString() {
-        return "BankOffice{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", address=" + address +
-                ", isOpen=" + isOpen +
-                ", isAtmPlacementAvailable=" + isAtmPlacementAvailable +
-                ", atmsCount=" + atmsCount +
-                ", isApplyingForLoansAvailable=" + isApplyingForLoansAvailable +
-                ", isCashWithdrawalAvailable=" + isCashWithdrawalAvailable +
-                ", isCashDepositAvailable=" + isCashDepositAvailable +
-                ", totalCash=" + totalCash +
-                ", rentPrice=" + rentPrice +
-                '}';
+        return "BankOffice{" + "\n" +
+                "id='" + id + "\n" +
+                "name='" + name + "\n" +
+                "address=" + address + "\n" +
+                "bank=" + bank.getName() + "\n" +
+                "isOpen=" + isOpen + "\n" +
+                "isAtmPlacementAvailable=" + isAtmPlacementAvailable + "\n" +
+                "atmsCount=" + atmsCount + "\n" +
+                "employeesCount" + employeesCount + "\n" +
+                "isApplyingForLoansAvailable=" + isApplyingForLoansAvailable + "\n" +
+                "isCashWithdrawalAvailable=" + isCashWithdrawalAvailable + "\n" +
+                "isCashDepositAvailable=" + isCashDepositAvailable + "\n" +
+                "totalCash=" + totalCash + "\n" +
+                "rentPrice=" + rentPrice + "\n" +
+                '}'+ "\n";
     }
 }

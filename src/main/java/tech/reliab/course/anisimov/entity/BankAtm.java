@@ -1,6 +1,5 @@
 package tech.reliab.course.anisimov.entity;
 
-import tech.reliab.course.anisimov.entity.internalComponents.Address;
 import tech.reliab.course.anisimov.entity.internalComponents.OpenStatus;
 
 import java.util.Objects;
@@ -9,44 +8,59 @@ final public class BankAtm {
     //region ===================== Properties ======================
     private String id;
     private String name;
-    private Address bankOfficeAddress;
+    private BankOffice bankOffice;
     private OpenStatus status;
     private Boolean isOpen;
-    private String parentBankId;
+    private Bank bank;
     private String placementInBank;
     private Employee maintenanceEmployee;
     private Boolean isCashWithdrawalAvailable;
     private Boolean isCashDepositAvailable;
-    private int totalCash;
+    private double totalCash;
     private int costService;
 
     //region ===================== Constructors ======================
     public BankAtm(
             String id,
             String name,
-            Address bankOfficeAddress,
+            BankOffice bankOffice,
             OpenStatus status,
             Boolean isOpen,
-            String parentBankId,
+            Bank bank,
             String placementInBank,
             Employee maintenanceEmployee,
             Boolean isCashWithdrawalAvailable,
             Boolean isCashDepositAvailable,
-            int totalCash,
+            double totalCash,
             int costService
     ) {
         this.id = id;
         this.name = name;
-        this.bankOfficeAddress = bankOfficeAddress;
+        this.bankOffice = bankOffice;
         this.status = status;
         this.isOpen = isOpen;
-        this.parentBankId = parentBankId;
+        this.bank = bank;
         this.placementInBank = placementInBank;
         this.maintenanceEmployee = maintenanceEmployee;
         this.isCashWithdrawalAvailable = isCashWithdrawalAvailable;
         this.isCashDepositAvailable = isCashDepositAvailable;
         this.totalCash = totalCash;
         this.costService = costService;
+    }
+
+    public BankAtm(BankAtm bankAtm) {
+        this.id = bankAtm.getId();
+        this.name = bankAtm.getName();
+        this.bankOffice = bankAtm.bankOffice;
+        this.status = bankAtm.getStatus();
+        this.isOpen = bankAtm.getOpen();
+        this.bank = bankAtm.getBank();
+        this.placementInBank = bankAtm.getPlacementInBank();
+        this.maintenanceEmployee = bankAtm.getMaintenanceEmployee();
+        this.isCashWithdrawalAvailable = bankAtm.getCashWithdrawalAvailable();
+        this.isCashDepositAvailable = bankAtm.getCashDepositAvailable();
+        this.totalCash = bankAtm.getTotalCash();
+        this.costService = bankAtm.getCostService();
     }
 
     //region ===================== Setters ======================
@@ -58,8 +72,8 @@ final public class BankAtm {
         this.name = name;
     }
 
-    public void setBankOfficeAddress(Address bankOfficeAddress) {
-        this.bankOfficeAddress = bankOfficeAddress;
+    public void setBankOffice(BankOffice bankOffice) {
+        this.bankOffice = bankOffice;
     }
 
     public void setStatus(OpenStatus status) { this.status = status; }
@@ -68,8 +82,8 @@ final public class BankAtm {
         isOpen = open;
     }
 
-    public void setParentBank(String parentBankId) {
-        this.parentBankId = parentBankId;
+    public void setParentBank(Bank bank) {
+        this.bank = bank;
     }
 
     public void setPlacementInBank(String placementInBank) {
@@ -88,7 +102,7 @@ final public class BankAtm {
         isCashDepositAvailable = cashDepositAvailable;
     }
 
-    public void setTotalCash(int totalCash) {
+    public void setTotalCash(double totalCash) {
         this.totalCash = totalCash;
     }
 
@@ -105,8 +119,8 @@ final public class BankAtm {
         return name;
     }
 
-    public Address getBankOfficeAddress() {
-        return bankOfficeAddress;
+    public BankOffice getBankOffice() {
+        return bankOffice;
     }
 
     public OpenStatus getStatus() { return this.status; }
@@ -114,8 +128,8 @@ final public class BankAtm {
         return isOpen;
     }
 
-    public String getParentBankId() {
-        return parentBankId;
+    public Bank getBank() {
+        return bank;
     }
 
     public String getPlacementInBank() {
@@ -134,7 +148,7 @@ final public class BankAtm {
         return isCashDepositAvailable;
     }
 
-    public int getTotalCash() {
+    public double getTotalCash() {
         return totalCash;
     }
 
@@ -158,19 +172,23 @@ final public class BankAtm {
 
     @Override
     public String toString() {
-        return "BankAtm{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", bankOfficeAddress=" + bankOfficeAddress +
-                ", status=" + status +
-                ", isOpen=" + isOpen +
-                ", parentBankId=" + parentBankId +
-                ", placementInBank='" + placementInBank + '\'' +
-                ", maintenanceEmployee=" + maintenanceEmployee +
-                ", isCashWithdrawalAvailable=" + isCashWithdrawalAvailable +
-                ", isCashDepositAvailable=" + isCashDepositAvailable +
-                ", totalCash=" + totalCash +
-                ", costService=" + costService +
-                '}';
+        String employeeName = "";
+        if (maintenanceEmployee != null) {
+            employeeName = maintenanceEmployee.getFullName();
+        }
+
+        return "BankAtm{" + "\n" +
+                "id='" + id + '\'' + "\n" +
+                "name='" + name + '\'' + "\n" +
+                "bankOffice=" + bankOffice.getName() + "\n" +
+                "status=" + status + "\n" +
+                "isOpen=" + isOpen + "\n" +
+                "bank='" + bank.getName() + "\n" +
+                "maintenanceEmployee=" + employeeName + "\n" +
+                "isCashWithdrawalAvailable=" + isCashWithdrawalAvailable + "\n" +
+                "isCashDepositAvailable=" + isCashDepositAvailable + "\n" +
+                "totalCash=" + totalCash + "\n" +
+                "costService=" + costService + "\n" +
+                '}' + "\n";
     }
 }

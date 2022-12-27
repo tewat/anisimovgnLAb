@@ -2,12 +2,29 @@ package tech.reliab.course.anisimov.service;
 
 import tech.reliab.course.anisimov.entity.PaymentAccount;
 
+import java.util.List;
+
 public interface PaymentAccountService {
-    PaymentAccount getAccount();
+    // Создание платежного аккаунта
+    PaymentAccount create(PaymentAccount paymentAccount);
 
-    void setAccount(PaymentAccount account);
+    // Добавление платежного аккаунта
+    PaymentAccount addAccount(PaymentAccount account);
 
-    Boolean updateAccount(PaymentAccount account);
+    // Удаление аккаунты
+    Boolean deleteAccount(String accountId);
 
-    Boolean deleteAccount(PaymentAccount account);
+    // Получение аккаунта по айди
+    PaymentAccount getAccountById(String accountId);
+
+    // Получение всех аккаунтов польщователя
+    List<PaymentAccount> getUsersAccounts(String userId);
+
+    // Внести деньги
+    void depositMoney(PaymentAccount account, double sum);
+
+    // Снять деньги
+    void withdrawMoney(PaymentAccount account, double sum);
+
+    String stringRepresentation(String accountId);
 }
