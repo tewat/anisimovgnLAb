@@ -167,18 +167,18 @@ final public class CreditAccount {
 
     @Override
     public String toString() {
-        return "CreditAccount{" +
-                "id='" + id + '\'' +
-                ", customer=" + customer.getId() +
-                ", bankName='" + bank.getName() + '\'' +
-                ", loanStartDate=" + loanStartDate +
-                ", loadEndDate=" + loadEndDate +
-                ", loanMonthCount=" + loanMonthCount +
-                ", loanAmount=" + loanAmount +
-                ", monthlyPayment=" + monthlyPayment +
-                ", interestRate=" + interestRate +
-                ", employeeId=" + employee.getId() +
-                ", paymentAccountId=" + paymentAccount.getId() +
-                '}';
+        return "CreditAccount{" + "\n" +
+                "id='" + id + "\n" +
+                "customer=" + customer.getFullName() + "\n" +
+                "bankName='" + bank.getName() + "\n" +
+                "loanStartDate=" + loanStartDate + "\n" +
+                "loadEndDate=" + loadEndDate + "\n" +
+                "loanMonthCount=" + loanMonthCount + "\n" +
+                "loanAmount=" + loanAmount + "\n" +
+                "monthlyPayment=" + monthlyPayment + "\n" +
+                "interestRate=" + interestRate + "\n" +
+                "employeeName=" + employee.getFullName() + "\n" +
+                "paymentAccountId=" + paymentAccount.getId() + "\n" +
+                '}' + "\n";
     }
 }

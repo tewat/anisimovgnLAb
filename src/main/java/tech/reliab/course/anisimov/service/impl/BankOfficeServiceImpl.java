@@ -9,6 +9,7 @@ import tech.reliab.course.anisimov.entity.Employee;
 import tech.reliab.course.anisimov.service.AtmService;
 import tech.reliab.course.anisimov.service.BankOfficeService;
 import tech.reliab.course.anisimov.service.BankService;
+import tech.reliab.course.anisimov.service.EmployeeService;
 
 import java.util.*;
 
@@ -19,6 +20,7 @@ final public class BankOfficeServiceImpl implements BankOfficeService {
     //region ===================== DI ======================
     @NotNull public BankService bankService;
     @NotNull public AtmService atmService;
+    @NotNull public EmployeeService employeeService;
 
     //region ===================== Constructor ======================
     public BankOfficeServiceImpl() { }
@@ -168,5 +170,27 @@ final public class BankOfficeServiceImpl implements BankOfficeService {
         } else {
             System.out.println("В данном офисе нельзя снимать наличные");
         }
+    }
+
+    @Override
+    public @Nullable String stringRepresentation(@NotNull String officeId) {
+        BankOffice bankOffice = this.getOfficeById(officeId);
+        if (bankOffice == null) { return null; }
+
+        StringBuilder builder = new StringBuilder(bankOffice.toString());
+
+
+        builder.append("Информация обанкоматах\n");
+        this.atmService.getAtmsByOfficeId(officeId).forEach(atm ->
+                builder.append(this.atmService.stringRepresentation(atm.getId())).append("\n")
+        );
+
+        builder.append("Информация о работниках\n");
+        this.employeeService.getEmployeesByOfficeId(officeId).forEach(employee ->
+                builder.append(this.employeeService.stringRepresentation(employee.getId())).append("\n")
+        );
+
+        builder.append("\n");
+        return builder.toString();
     }
 }

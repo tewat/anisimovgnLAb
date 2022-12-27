@@ -182,20 +182,20 @@ final public class BankOffice {
 
     @Override
     public String toString() {
-        return "BankOffice{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", address=" + address +
-                ", bank=" + bank.getName() +
-                ", isOpen=" + isOpen +
-                ", isAtmPlacementAvailable=" + isAtmPlacementAvailable +
-                ", atmsCount=" + atmsCount +
-                ", employeesCount" + employeesCount +
-                ", isApplyingForLoansAvailable=" + isApplyingForLoansAvailable +
-                ", isCashWithdrawalAvailable=" + isCashWithdrawalAvailable +
-                ", isCashDepositAvailable=" + isCashDepositAvailable +
-                ", totalCash=" + totalCash +
-                ", rentPrice=" + rentPrice +
-                '}';
+        return "BankOffice{" + "\n" +
+                "id='" + id + "\n" +
+                "name='" + name + "\n" +
+                "address=" + address + "\n" +
+                "bank=" + bank.getName() + "\n" +
+                "isOpen=" + isOpen + "\n" +
+                "isAtmPlacementAvailable=" + isAtmPlacementAvailable + "\n" +
+                "atmsCount=" + atmsCount + "\n" +
+                "employeesCount" + employeesCount + "\n" +
+                "isApplyingForLoansAvailable=" + isApplyingForLoansAvailable + "\n" +
+                "isCashWithdrawalAvailable=" + isCashWithdrawalAvailable + "\n" +
+                "isCashDepositAvailable=" + isCashDepositAvailable + "\n" +
+                "totalCash=" + totalCash + "\n" +
+                "rentPrice=" + rentPrice + "\n" +
+                '}'+ "\n";
     }
 }

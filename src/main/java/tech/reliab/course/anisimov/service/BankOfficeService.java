@@ -43,5 +43,5 @@ public interface BankOfficeService {
     // Снять деньги из офис
     void withdrawMoney(String bankOfficeId, double sum);
 
-
+    String stringRepresentation(String officeId);
 }

@@ -34,4 +34,6 @@ public interface AtmService {
     void depositMoney(String atmId, double sum) throws DoesNotExistException, CannotDepositMoneyException;
 
     void withdrawMoney(String atmId, double sum) throws DoesNotExistException, NotEnoughMoneyException;
+
+    String stringRepresentation(String atmId);
 }

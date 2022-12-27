@@ -8,6 +8,8 @@ import tech.reliab.course.anisimov.entity.BankAtm;
 import tech.reliab.course.anisimov.entity.BankOffice;
 import tech.reliab.course.anisimov.service.AtmService;
 import tech.reliab.course.anisimov.service.BankOfficeService;
+import tech.reliab.course.anisimov.service.BankService;
+import tech.reliab.course.anisimov.service.EmployeeService;
 
 import java.util.*;
 
@@ -141,5 +143,13 @@ final public class AtmServiceImpl implements AtmService {
                 System.out.println("В банкомате закончились деньги");
             }
         }
+    }
+
+    @Override
+    public @Nullable String stringRepresentation(@NotNull String atmId) {
+        BankAtm bankAtm = this.getAtmById(atmId);
+        if (bankAtm == null) { return null; }
+
+        return bankAtm.toString();
     }
 }

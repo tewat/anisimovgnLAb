@@ -164,16 +164,16 @@ final public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", fullName=" + fullName +
-                ", birthDate=" + birthDate +
-                ", placeOfWork='" + placeOfWork + '\'' +
-                ", monthlyIncome=" + monthlyIncome +
-                ", banksIds=" + bank.getId() +
-                ", creditAccountCount=" + creditAccountsCount +
-                ", paymentAccountCount=" + paymentAccountCount +
-                ", loanRating=" + loanRating +
-                '}';
+        return "User{" + "\n" +
+                "id='" + id + "\n" +
+                "fullName=" + fullName + "\n" +
+                "birthDate=" + birthDate + "\n" +
+                "placeOfWork='" + placeOfWork + "\n" +
+                "monthlyIncome=" + monthlyIncome + "\n" +
+                "banksName=" + bank.getName() + "\n" +
+                "creditAccountCount=" + creditAccountsCount + "\n" +
+                "paymentAccountCount=" + paymentAccountCount + "\n" +
+                "loanRating=" + loanRating + "\n" +
+                '}' + "\n";
     }
 }

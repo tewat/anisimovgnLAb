@@ -142,4 +142,25 @@ final public class UserServiceImpl implements UserService {
 
         user.setLoanRating(rate);
     }
+
+    @Override
+    public @Nullable String stringRepresentation(@NotNull String userId) {
+        User user = this.getUserById(userId);
+        if (user == null) { return null; }
+
+        StringBuilder builder = new StringBuilder(user.toString());
+
+        builder.append("Кредитные аккаунты:\n");
+        this.creditAccountService.getUsersAccounts(userId).forEach(account ->
+            builder.append(creditAccountService.stringRepresentation(account.getId())).append("\n")
+        );
+
+        builder.append("Платежные аккаунты:\n");
+        this.paymentAccountService.getUsersAccounts(userId).forEach(account ->
+            builder.append(this.paymentAccountService.stringRepresentation(account.getId())).append("\n")
+        );
+
+        builder.append("\n");
+        return builder.toString();
+    }
 }

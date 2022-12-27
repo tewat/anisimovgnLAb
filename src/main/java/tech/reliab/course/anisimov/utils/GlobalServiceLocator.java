@@ -42,6 +42,7 @@ public class GlobalServiceLocator {
 
         ((BankOfficeServiceImpl) this.bankOfficeService).bankService = this.bankService;
         ((BankOfficeServiceImpl) this.bankOfficeService).atmService = this.atmService;
+        ((BankOfficeServiceImpl) this.bankOfficeService).employeeService = this.employeeService;
 
         ((CreditAccountServiceImpl) this.creditAccountService).bankService = this.bankService;
         ((CreditAccountServiceImpl) this.creditAccountService).userService = this.userService;
@@ -55,10 +56,16 @@ public class GlobalServiceLocator {
         ((EmployeeServiceImpl) this.employeeService).bankOfficeService = this.bankOfficeService;
 
         ((BankServiceImpl) this.bankService).bankOfficeService = this.bankOfficeService;
+        ((BankServiceImpl) this.bankService).userService = this.userService;
     }
 
     //region ===================== Static methods ====================
     public static GlobalServiceLocator getInstance() {
-        return Objects.requireNonNullElseGet(instance, GlobalServiceLocator::new);
+        if (instance == null) {
+            instance = new GlobalServiceLocator();
+            return instance;
+        } else {
+            return instance;
+        }
     }
 }

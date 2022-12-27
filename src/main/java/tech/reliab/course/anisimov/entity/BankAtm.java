@@ -172,19 +172,23 @@ final public class BankAtm {
 
     @Override
     public String toString() {
-        return "BankAtm{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", bankOffice=" + bankOffice.getName() +
-                ", status=" + status +
-                ", isOpen=" + isOpen +
-                ", parentBankId=" + bank +
-                ", bank='" + bank.getName() + '\'' +
-                ", maintenanceEmployee=" + maintenanceEmployee +
-                ", isCashWithdrawalAvailable=" + isCashWithdrawalAvailable +
-                ", isCashDepositAvailable=" + isCashDepositAvailable +
-                ", totalCash=" + totalCash +
-                ", costService=" + costService +
-                '}';
+        String employeeName = "";
+        if (maintenanceEmployee != null) {
+            employeeName = maintenanceEmployee.getFullName();
+        }
+
+        return "BankAtm{" + "\n" +
+                "id='" + id + '\'' + "\n" +
+                "name='" + name + '\'' + "\n" +
+                "bankOffice=" + bankOffice.getName() + "\n" +
+                "status=" + status + "\n" +
+                "isOpen=" + isOpen + "\n" +
+                "bank='" + bank.getName() + "\n" +
+                "maintenanceEmployee=" + employeeName + "\n" +
+                "isCashWithdrawalAvailable=" + isCashWithdrawalAvailable + "\n" +
+                "isCashDepositAvailable=" + isCashDepositAvailable + "\n" +
+                "totalCash=" + totalCash + "\n" +
+                "costService=" + costService + "\n" +
+                '}' + "\n";
     }
 }

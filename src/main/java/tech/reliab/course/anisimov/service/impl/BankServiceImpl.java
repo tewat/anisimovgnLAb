@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Nullable;
 import tech.reliab.course.anisimov.entity.*;
 import tech.reliab.course.anisimov.service.BankOfficeService;
 import tech.reliab.course.anisimov.service.BankService;
+import tech.reliab.course.anisimov.service.UserService;
 
 import java.util.*;
 import java.util.random.RandomGenerator;
@@ -15,6 +16,7 @@ final public class BankServiceImpl implements BankService {
 
     //region ===================== DI ======================
     @NotNull public BankOfficeService bankOfficeService;
+    @NotNull public UserService userService;
 
     //region ===================== BankService implementation ======================
     @Override
@@ -169,7 +171,7 @@ final public class BankServiceImpl implements BankService {
             if (employee.getCanIssueLoans()) {
                 double sumMonthPay = sum * (bank.getInterestRate() / 100 + 1) / creditAccount.getLoanMonthCount();
 
-                if (creditAccount.getCustomer().getMonthlyIncome() > sumMonthPay) {
+                if (creditAccount.getCustomer().getMonthlyIncome() < sumMonthPay) {
                     creditAccount.setEmployee(employee);
                     creditAccount.setMonthlyPayment(sumMonthPay);
                     creditAccount.setBank(bank);
@@ -188,5 +190,26 @@ final public class BankServiceImpl implements BankService {
         }
 
         return false;
+    }
+
+    @Override
+    public @Nullable String stringRepresentation(@NotNull String bankId) {
+        Bank bank = this.getBankById(bankId);
+        if (bank == null) { return null; }
+
+        StringBuilder builder = new StringBuilder(bank.toString());
+
+        builder.append("Информация о офисах\n");
+        this.bankOfficeService.getOfficesByBankId(bankId).forEach(bankOffice ->
+            builder.append(this.bankOfficeService.stringRepresentation(bankOffice.getId())).append("\n")
+        );
+
+        builder.append("Информация о клиентах\n");
+        this.userService.getAllUsersByBankId(bankId).forEach(user ->
+            builder.append(this.userService.stringRepresentation(user.getId())).append("\n")
+        );
+
+        builder.append("\n");
+        return builder.toString();
     }
 }
