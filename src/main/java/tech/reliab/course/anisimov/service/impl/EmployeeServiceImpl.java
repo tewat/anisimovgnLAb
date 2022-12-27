@@ -68,4 +68,12 @@ final public class EmployeeServiceImpl implements EmployeeService {
                 .filter(employee -> Objects.equals(employee.getBankOfWork().getId(), bankId))
                 .toList();
     }
+
+    @Override
+    public @Nullable String stringRepresentation(@NotNull String employeeId) {
+        Employee employee = this.getEmployeeById(employeeId);
+        if (employee == null) { return null; }
+
+        return employee.toString();
+    }
 }

@@ -73,4 +73,12 @@ final public class PaymentAccountServiceImpl implements PaymentAccountService {
             System.out.println("На аккаунте недостаточно средств");
         }
     }
+
+    @Override
+    public @Nullable String stringRepresentation(@NotNull String accountId) {
+        PaymentAccount paymentAccount = this.getAccountById(accountId);
+        if (paymentAccount == null) {return null; }
+
+        return paymentAccount.toString();
+    }
 }

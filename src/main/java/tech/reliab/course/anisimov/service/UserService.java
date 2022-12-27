@@ -43,4 +43,5 @@ public interface UserService {
     // Посчитать кредитный рейтинг пользователя
     void calculateRating(User user);
 
+    String stringRepresentation(String userId);
 }

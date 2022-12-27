@@ -19,4 +19,6 @@ public interface CreditAccountService {
 
     // Списать оплату за месяц
     void executeMonthlyPayment(CreditAccount creditAccount);
+
+    String stringRepresentation(String accountId);
 }

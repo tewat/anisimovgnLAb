@@ -23,4 +23,6 @@ public interface EmployeeService {
 
     // Получить работников банка
     List<Employee> getEmployeesByBank(String bankId);
+
+    String stringRepresentation(String employeeId);
 }

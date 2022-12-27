@@ -216,8 +216,8 @@ public class Main {
                     20_000.0,
                     10_000.0,
                     1,
-                    null,
-                    null
+                    employeeService.getEmployeeById("1" + user.getId()),
+                    paymentAccountService.getAccountById("1" + user.getId())
             ));
             creditAccountService.create(new CreditAccount(
                     "2" + user.getId(),
@@ -229,8 +229,8 @@ public class Main {
                     20_000.0,
                     10_000.0,
                     1,
-                    null,
-                    null
+                    employeeService.getEmployeeById("2" + user.getId()),
+                    paymentAccountService.getAccountById(2 + user.getId())
             ));
         });
 
@@ -244,7 +244,7 @@ public class Main {
 
         String inputValue = Integer.toString(in.nextInt());
         while (!inputValue.equals("-1")) {
-            System.out.println(bankService.getBankById(inputValue));
+            System.out.println(bankService.stringRepresentation(inputValue));
             System.out.println(bankOption);
             inputValue = Integer.toString(in.nextInt());
         }
@@ -257,7 +257,7 @@ public class Main {
         System.out.println(bankOption);
 
         while (!inputValue.equals("-2")) {
-            System.out.println(userService.getUserById(inputValue));
+            System.out.println(userService.stringRepresentation(inputValue));
             System.out.println(userOption);
             inputValue = Integer.toString(in.nextInt());
         }

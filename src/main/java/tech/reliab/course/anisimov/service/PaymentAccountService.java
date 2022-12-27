@@ -25,4 +25,6 @@ public interface PaymentAccountService {
 
     // Снять деньги
     void withdrawMoney(PaymentAccount account, double sum);
+
+    String stringRepresentation(String accountId);
 }

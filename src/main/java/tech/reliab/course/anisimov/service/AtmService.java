@@ -30,4 +30,6 @@ public interface AtmService {
     void depositMoney(String atmId, double sum);
 
     void withdrawMoney(String atmId, double sum);
+
+    String stringRepresentation(String atmId);
 }

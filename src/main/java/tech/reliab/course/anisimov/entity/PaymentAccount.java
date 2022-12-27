@@ -83,11 +83,11 @@ final public class PaymentAccount {
 
     @Override
     public String toString() {
-        return "PaymentAccount{" +
-                "id='" + id + '\'' +
-                ", userId=" + user.getId() +
-                ", bankName='" + bank.getId() + '\'' +
-                ", totalCash=" + totalCash +
-                '}';
+        return "PaymentAccount{" + "\n" +
+                "id='" + id + "\n" +
+                "userName=" + user.getFullName() + "\n" +
+                "bankName='" + bank.getName() + "\n" +
+                "totalCash=" + totalCash + "\n" +
+                '}' + "\n";
     }
 }

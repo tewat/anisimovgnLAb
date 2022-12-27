@@ -49,4 +49,6 @@ public interface BankService {
 
     // Одобрение кредита
     Boolean isCreditAllowed(String bankId, CreditAccount creditAccount, Employee employee);
+
+    String stringRepresentation(String bankId);
 }

@@ -77,4 +77,12 @@ final public class CreditAccountServiceImpl implements CreditAccountService {
             }
         }
     }
+
+    @Override
+    public @Nullable String stringRepresentation(@NotNull String accountId) {
+        CreditAccount creditAccount = this.creditAccountMap.get(accountId);
+        if (creditAccount == null) { return null; }
+
+        return creditAccount.toString();
+    }
 }

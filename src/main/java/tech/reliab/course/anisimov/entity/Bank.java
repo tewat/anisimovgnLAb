@@ -141,16 +141,16 @@ final public class Bank {
 
     @Override
     public String toString() {
-        return "Bank{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", officesCount=" + officesCount +
-                ", atmsCount=" + atmsCount +
-                ", employeesCount=" + employeesCount +
-                ", clientsCount=" + clientsCount +
-                ", rating=" + rating +
-                ", totalMoney=" + totalMoney +
-                ", interestRate=" + interestRate +
-                '}';
+        return "Bank{" + "\n" +
+                "id='" + id + "\n" +
+                "name='" + name + "\n" +
+                "officesCount=" + officesCount + "\n" +
+                "atmsCount=" + atmsCount + "\n" +
+                "employeesCount=" + employeesCount + "\n" +
+                "clientsCount=" + clientsCount + "\n" +
+                "rating=" + rating + "\n" +
+                "totalMoney=" + totalMoney + "\n" +
+                "interestRate=" + interestRate + "\n" +
+                '}' + "\n";
     }
 }
