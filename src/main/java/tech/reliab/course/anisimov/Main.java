@@ -5,6 +5,7 @@ import tech.reliab.course.anisimov.entity.internalComponents.OpenStatus;
 import tech.reliab.course.anisimov.service.*;
 import tech.reliab.course.anisimov.utils.GlobalServiceLocator;
 
+import javax.swing.*;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
@@ -239,27 +240,79 @@ public class Main {
             bankOption.append("Введите -1 для выхода\n");
             bankOption.append("Доступные айди: ");
             bankService.getAllBanks().forEach(bank -> bankOption.append(bank.getId()).append("  "));
-            System.out.println(bankOption);
 
-            String inputValue = Integer.toString(in.nextInt());
-            while (!inputValue.equals("-1")) {
-                System.out.println(bankService.stringRepresentation(inputValue));
+            String inputValue = "";
+            while (true) {
                 System.out.println(bankOption);
                 inputValue = Integer.toString(in.nextInt());
                 if (inputValue.equals("-1")) { break; }
+                System.out.println(bankService.stringRepresentation(inputValue));
             }
 
             StringBuilder userOption = new StringBuilder("Вывод информации о пользователях\n");
             userOption.append("Введите айди пользователя\n");
-            userOption.append("Введите -2 для выхода\n");
+            userOption.append("Введите -1 для выхода\n");
             userOption.append("Доступные айди: ");
             userService.getAllUsers().forEach(user -> userOption.append(user.getId()).append("  "));
-            System.out.println(bankOption);
 
-            while (!inputValue.equals("-2")) {
-                inputValue = Integer.toString(in.nextInt());
-                System.out.println(userService.stringRepresentation(inputValue));
+            while (true) {
                 System.out.println(userOption);
+                inputValue = Integer.toString(in.nextInt());
+                if (inputValue.equals("-1")) { break; }
+                System.out.println(userService.stringRepresentation(inputValue));
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        String userId = "";
+        try {
+            Scanner in = new Scanner(System.in);
+            System.out.println("Механика взятия кредита");
+            System.out.println("Введите айди пользователя, на которого хотите оформить кредит");
+            System.out.println("Введите -1 для выхода");
+            System.out.print("Айди пользователей в системе: ");
+            for (User user : userService.getAllUsers()) {
+                System.out.print(user.getId() + " ");
+            }
+            userId = Integer.toString(in.nextInt());
+            System.out.println();
+
+            int creditAccountId = 0;
+            while (!userId.equals("-1")) {
+                System.out.print("Введите сумму кредита: ");
+                double sum = in.nextDouble();
+                System.out.print("Введите срок кредита в месяцах: ");
+                int monthCount = in.nextInt();
+
+                System.out.print("Айди подхожящих банков: ");
+                for (Bank bank : bankService.getSuitableForLoanBanks(sum, monthCount)) {
+                    System.out.print(bank.getId() + " ");
+                }
+
+                System.out.println("Введите айди банка: ");
+                String bankID = Integer.toString(in.nextInt());
+
+                Bank bank = bankService.getBankById(bankID);
+                BankOffice bankOffice = bankService.getSuitableForLoanOffices(bankID, sum).get(0);
+                Employee employee = bankOfficeService.getSuitableForLoanEmployees(bankOffice.getId()).get(0);
+                PaymentAccount paymentAccount = paymentAccountService.getBestAccountForUser(userId);
+                CreditAccount creditAccount = creditAccountService.create(new CreditAccount(
+                        Integer.toString(creditAccountId),
+                        userService.getUserById(userId),
+                        bank,
+                        LocalDate.now(),
+                        LocalDate.now().plusMonths(monthCount),
+                        monthCount,
+                        sum,
+                        1.0,
+                        12,
+                        employee,
+                        paymentAccount
+                ));
+
+                System.out.println(creditAccount);
+                creditAccountId++;
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
