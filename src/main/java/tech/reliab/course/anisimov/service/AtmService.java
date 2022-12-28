@@ -10,16 +10,16 @@ import java.util.List;
 
 public interface AtmService {
     // Создать банкомат
-    BankAtm create(BankAtm bankAtm) throws DoesNotExistException, UnuniqeIdException;
+    BankAtm create(BankAtm bankAtm) throws UnuniqeIdException;
 
     // Добавить банкомат
-    BankAtm addAtm(BankAtm bankAtm) throws DoesNotExistException, UnuniqeIdException;
+    BankAtm addAtm(BankAtm bankAtm) throws UnuniqeIdException;
 
     // Получить банкомат по айди
     BankAtm getAtmById(String atmId) throws DoesNotExistException;
 
     // Получить все бакнкоматы банка
-    List<BankAtm> getAllAtms(String bankId);
+    List<BankAtm> getAllAtms();
 
     // Получить все банкоматы офисы
     List<BankAtm> getAtmsByOfficeId(String officeId);
@@ -35,5 +35,7 @@ public interface AtmService {
 
     void withdrawMoney(String atmId, double sum) throws DoesNotExistException, NotEnoughMoneyException;
 
-    String stringRepresentation(String atmId);
+    String stringRepresentation(String atmId) throws DoesNotExistException;
+
+    Boolean isSuitableForLoan(String atmId, double sum) throws DoesNotExistException;
 }
