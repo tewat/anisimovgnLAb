@@ -16,6 +16,8 @@ final public class Bank {
     private double interestRate;
 
     //region ===================== Constructors ======================
+    public Bank() {}
+
     public Bank(
             String id,
             String name,

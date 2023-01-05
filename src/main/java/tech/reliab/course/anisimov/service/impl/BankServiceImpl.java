@@ -1,26 +1,29 @@
 package tech.reliab.course.anisimov.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import tech.reliab.course.anisimov.entity.*;
-import tech.reliab.course.anisimov.exception.DoesNotExistException;
-import tech.reliab.course.anisimov.exception.IssuingCreditException;
-import tech.reliab.course.anisimov.exception.NotEnoughMoneyException;
-import tech.reliab.course.anisimov.exception.UnuniqeIdException;
+import tech.reliab.course.anisimov.exception.*;
 import tech.reliab.course.anisimov.service.BankOfficeService;
 import tech.reliab.course.anisimov.service.BankService;
 import tech.reliab.course.anisimov.service.UserService;
 
+import java.io.File;
 import java.util.*;
 import java.util.random.RandomGenerator;
 
 final public class BankServiceImpl implements BankService {
     //region ===================== Properties ======================
-    private Map<String, Bank> bankMap = new HashMap<>();
+    private final Map<String, Bank> bankMap = new HashMap<>();
 
     //region ===================== DI ======================
     @NotNull public BankOfficeService bankOfficeService;
     @NotNull public UserService userService;
+    @NotNull private ObjectMapper jsonMapper;
+
+    //region ===================== Constructor ======================
+    public  BankServiceImpl(ObjectMapper jsonMapper) { this.jsonMapper = jsonMapper; }
 
     //region ===================== BankService implementation ======================
     @Override
@@ -242,5 +245,55 @@ final public class BankServiceImpl implements BankService {
         }
 
         return bankOffices;
+    }
+
+    @Override
+    public @NotNull Boolean addCreditAccountFromFromFile(
+            @NotNull String filePath,
+            @NotNull String destinationBankId,
+            @NotNull String accountId
+    ) throws DoesNotExistException, CouldNotReadUserAccountsFromFile {
+        try {
+            UserAccounts userAccounts = this.jsonMapper.readValue(new File(filePath), UserAccounts.class);
+            List<CreditAccount> accounts = userAccounts.getCreditAccounts()
+                    .stream()
+                    .filter(creditAccount -> Objects.equals(creditAccount.getId(), accountId))
+                    .toList();
+            if (accounts.isEmpty()) { return false; }
+            CreditAccount account = accounts.get(0);
+
+            this.userService.removeCreditAccount(userAccounts.getUserId(), accountId);
+            account.setBank(this.getBankById(destinationBankId));
+            this.userService.addCreditAccount(userAccounts.getUserId(), account);
+            return true;
+
+        } catch (Exception e) {
+            throw new CouldNotReadUserAccountsFromFile(filePath, e.getLocalizedMessage());
+        }
+    }
+
+    @Override
+    public @NotNull Boolean addPaymentAccountFromFile(
+            @NotNull  String filePath,
+            @NotNull String destinationBankId,
+            @NotNull String accountId
+    ) throws DoesNotExistException, CouldNotReadUserAccountsFromFile {
+        try {
+            UserAccounts userAccounts = this.jsonMapper.readValue(new File(filePath), UserAccounts.class);
+            List<PaymentAccount> accounts = userAccounts.getPaymentAccounts()
+                    .stream()
+                    .filter(creditAccount -> Objects.equals(creditAccount.getId(), accountId))
+                    .toList();
+            if (accounts.isEmpty()) { return false; }
+            PaymentAccount account = accounts.get(0);
+
+            this.userService.removePaymentAccount(userAccounts.getUserId(), accountId);
+            account.setBank(this.getBankById(destinationBankId));
+            this.userService.addPaymentAccount(userAccounts.getUserId(), account);
+            return true;
+
+        } catch (Exception e) {
+            throw new CouldNotReadUserAccountsFromFile(filePath, e.getLocalizedMessage());
+        }
     }
 }

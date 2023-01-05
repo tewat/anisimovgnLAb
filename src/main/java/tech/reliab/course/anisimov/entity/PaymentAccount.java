@@ -10,6 +10,8 @@ final public class PaymentAccount {
     private double totalCash;
 
     //region ===================== Constructors ======================
+    public PaymentAccount() {}
+
     public PaymentAccount(String id, User user, Bank bank, double totalCash) {
         this.id = id;
         this.user = user;

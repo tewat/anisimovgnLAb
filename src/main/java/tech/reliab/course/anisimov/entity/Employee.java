@@ -19,6 +19,8 @@ final public class Employee {
     private int salary;
 
     //region ===================== Constructors ======================
+    public Employee() {}
+
     public Employee(
             String id,
             String fullName,

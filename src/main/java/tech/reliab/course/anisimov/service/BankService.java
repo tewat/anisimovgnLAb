@@ -58,4 +58,18 @@ public interface BankService {
     Boolean isSuitableForLoan(String bankId, double money) throws DoesNotExistException;
 
     List<BankOffice> getSuitableForLoanOffices(String bankId, double money) throws DoesNotExistException;
+
+    // Считывает кредитный аккаунт из файла и добавляет его в этот банк
+    Boolean addCreditAccountFromFromFile(
+            String filePath,
+            String destinationBankId,
+            String accountId
+    ) throws DoesNotExistException, CouldNotReadUserAccountsFromFile;
+
+    // Считывает платежный аккаунт из файла и добавляет его в этот банк
+    Boolean addPaymentAccountFromFile(
+            String filePath,
+            String destinationBankId,
+            String accountId
+    ) throws DoesNotExistException, CouldNotReadUserAccountsFromFile;
 }

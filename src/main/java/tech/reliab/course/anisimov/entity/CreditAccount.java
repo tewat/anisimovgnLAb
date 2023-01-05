@@ -19,6 +19,8 @@ final public class CreditAccount {
     private PaymentAccount paymentAccount;
 
     //region ===================== Constructors ======================
+    public CreditAccount() {}
+
     public CreditAccount(
             String id,
             User customer,

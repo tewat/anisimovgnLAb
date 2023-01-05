@@ -1,11 +1,10 @@
 package tech.reliab.course.anisimov.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import tech.reliab.course.anisimov.entity.Bank;
-import tech.reliab.course.anisimov.entity.CreditAccount;
-import tech.reliab.course.anisimov.entity.PaymentAccount;
-import tech.reliab.course.anisimov.entity.User;
+import tech.reliab.course.anisimov.entity.*;
+import tech.reliab.course.anisimov.exception.CouldNotWriteUsersAccountsToFile;
 import tech.reliab.course.anisimov.exception.DoesNotExistException;
 import tech.reliab.course.anisimov.exception.UnuniqeIdException;
 import tech.reliab.course.anisimov.service.BankService;
@@ -13,6 +12,7 @@ import tech.reliab.course.anisimov.service.CreditAccountService;
 import tech.reliab.course.anisimov.service.PaymentAccountService;
 import tech.reliab.course.anisimov.service.UserService;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -24,6 +24,10 @@ final public class UserServiceImpl implements UserService {
     @NotNull public CreditAccountService creditAccountService;
     @NotNull public PaymentAccountService paymentAccountService;
     @NotNull public BankService bankService;
+    @NotNull private ObjectMapper jsonMapper;
+
+    //region ===================== Constructors ======================
+    public UserServiceImpl(ObjectMapper jsonMapper) { this.jsonMapper = jsonMapper; }
 
     //region ===================== UserServiceOverrides ======================
     @Override
@@ -166,5 +170,31 @@ final public class UserServiceImpl implements UserService {
 
         builder.append("\n");
         return builder.toString();
+    }
+
+    @Override
+    public Boolean writePaymentAccounts(
+            @NotNull String ofUserWithId,
+            @NotNull String bankId,
+            @NotNull String toFileWithPath
+    ) throws DoesNotExistException, CouldNotWriteUsersAccountsToFile {
+        User user = this.getUserById(ofUserWithId);
+        List<PaymentAccount> paymentAccounts = this.paymentAccountService.getUsersAccounts(ofUserWithId)
+                .stream()
+                .filter(account -> Objects.equals(account.getBank().getId(), bankId))
+                .toList();
+        List<CreditAccount> creditAccounts = this.creditAccountService.getUsersAccounts(ofUserWithId)
+                .stream()
+                .filter(creditAccount -> Objects.equals(creditAccount.getBank().getId(), bankId))
+                .toList();
+        if (paymentAccounts.isEmpty() || creditAccounts.isEmpty()) { return false; }
+
+        UserAccounts userAccounts = new UserAccounts(ofUserWithId, paymentAccounts, creditAccounts);
+        try {
+            this.jsonMapper.writeValue(new File(toFileWithPath), userAccounts);
+            return true;
+        } catch (Exception e) {
+            throw new CouldNotWriteUsersAccountsToFile(ofUserWithId, toFileWithPath, e.getLocalizedMessage());
+        }
     }
 }
