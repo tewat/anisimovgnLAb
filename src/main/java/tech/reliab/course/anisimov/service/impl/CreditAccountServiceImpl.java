@@ -26,14 +26,14 @@ final public class CreditAccountServiceImpl implements CreditAccountService {
 
     //region ===================== CreditAccountService implementation ======================
     @Override
-    public @Nullable CreditAccount create(@NotNull CreditAccount creditAccount) throws UnuniqeIdException {
+    public @Nullable CreditAccount create(@NotNull CreditAccount creditAccount) throws UnuniqeIdException, IssuingCreditException {
         try {
             if (this.bankService.isCreditAllowed(creditAccount.getBank().getId(), creditAccount, creditAccount.getEmployee())) {
                 return this.addAccount(new CreditAccount(creditAccount));
             } else {
                 return null;
             }
-        } catch (DoesNotExistException | IssuingCreditException e) {
+        } catch (DoesNotExistException e) {
             return null;
         }
     }

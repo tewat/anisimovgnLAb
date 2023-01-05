@@ -2,6 +2,7 @@ package tech.reliab.course.anisimov.service;
 
 import tech.reliab.course.anisimov.entity.CreditAccount;
 import tech.reliab.course.anisimov.exception.DoesNotExistException;
+import tech.reliab.course.anisimov.exception.IssuingCreditException;
 import tech.reliab.course.anisimov.exception.NotEnoughMoneyException;
 import tech.reliab.course.anisimov.exception.UnuniqeIdException;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 public interface CreditAccountService {
     // Создание кредитного аккаунта
-    CreditAccount create(CreditAccount creditAccount) throws UnuniqeIdException;
+    CreditAccount create(CreditAccount creditAccount) throws UnuniqeIdException, IssuingCreditException;
 
     // Добавить кредитный аккаунт
     CreditAccount addAccount(CreditAccount account) throws UnuniqeIdException;
