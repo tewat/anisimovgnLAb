@@ -3,6 +3,7 @@ package tech.reliab.course.anisimov.service;
 import tech.reliab.course.anisimov.entity.CreditAccount;
 import tech.reliab.course.anisimov.entity.PaymentAccount;
 import tech.reliab.course.anisimov.entity.User;
+import tech.reliab.course.anisimov.exception.CouldNotWriteUsersAccountsToFile;
 import tech.reliab.course.anisimov.exception.DoesNotExistException;
 import tech.reliab.course.anisimov.exception.UnuniqeIdException;
 
@@ -46,4 +47,11 @@ public interface UserService {
     void calculateRating(User user);
 
     String stringRepresentation(String userId) throws DoesNotExistException;
+
+    // Создание или запись в файл по пути toFileWithPath всех счетов пользователя в формате JSON
+    Boolean writePaymentAccounts(
+            String ofUserWithId,
+            String bankId,
+            String toFileWithPath
+    ) throws DoesNotExistException, CouldNotWriteUsersAccountsToFile;
 }

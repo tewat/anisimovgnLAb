@@ -20,6 +20,8 @@ final public class BankAtm {
     private int costService;
 
     //region ===================== Constructors ======================
+    public BankAtm() {}
+
     public BankAtm(
             String id,
             String name,

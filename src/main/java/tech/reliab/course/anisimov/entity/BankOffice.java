@@ -21,6 +21,8 @@ final public class BankOffice {
     private int rentPrice;
 
     //region ===================== Constructors ======================
+    public BankOffice() {}
+
     public BankOffice(
             String id,
             String name,

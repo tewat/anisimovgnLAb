@@ -1,5 +1,9 @@
 package tech.reliab.course.anisimov.utils;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import tech.reliab.course.anisimov.entity.CreditAccount;
 import tech.reliab.course.anisimov.service.*;
 import tech.reliab.course.anisimov.service.impl.*;
@@ -10,10 +14,14 @@ public class GlobalServiceLocator {
     //region ===================== Properties ====================
     private static GlobalServiceLocator instance;
 
-    private final BankService bankService = new BankServiceImpl();
+    private final ObjectMapper jsonMapper = new ObjectMapper()
+            .registerModule(new ParameterNamesModule())
+            .registerModule(new Jdk8Module())
+            .registerModule(new JavaTimeModule());
+    private final BankService bankService = new BankServiceImpl(this.jsonMapper);
     private final BankOfficeService bankOfficeService = new BankOfficeServiceImpl();
     private final AtmService atmService = new AtmServiceImpl();
-    private final UserService userService = new UserServiceImpl();
+    private final UserService userService = new UserServiceImpl(this.jsonMapper);
     private final CreditAccountService creditAccountService = new CreditAccountServiceImpl();
     private final PaymentAccountService paymentAccountService = new PaymentAccountServiceImpl();
     private final EmployeeService employeeService = new EmployeeServiceImpl();
@@ -35,6 +43,8 @@ public class GlobalServiceLocator {
     public PaymentAccountService getPaymentAccountService() { return this.paymentAccountService; }
 
     public EmployeeService getEmployeeService() { return this.employeeService; }
+
+    public ObjectMapper getJsonMapper() { return this.jsonMapper; }
 
     //region ===================== Private ====================
     private void initDependencies() {

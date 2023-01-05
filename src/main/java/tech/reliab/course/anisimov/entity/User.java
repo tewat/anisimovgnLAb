@@ -20,6 +20,8 @@ final public class User {
     private double loanRating;
 
     //region ===================== Constructors ======================
+    public User() {}
+
     public User(
             String id,
             String fullName,

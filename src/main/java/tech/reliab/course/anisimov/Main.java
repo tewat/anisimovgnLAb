@@ -9,11 +9,26 @@ import javax.swing.*;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.random.RandomGenerator;
 
 public class Main {
+    private BankService bankService = GlobalServiceLocator.getInstance().getBankService();
+    private BankOfficeService bankOfficeService = GlobalServiceLocator.getInstance().getBankOfficeService();
+    private AtmService atmService = GlobalServiceLocator.getInstance().getAtmService();
+    private UserService userService = GlobalServiceLocator.getInstance().getUserService();
+    private EmployeeService employeeService = GlobalServiceLocator.getInstance().getEmployeeService();
+    private PaymentAccountService paymentAccountService = GlobalServiceLocator.getInstance().getPaymentAccountService();
+    private CreditAccountService creditAccountService = GlobalServiceLocator.getInstance().getCreditAccountService();
+
     public static void main(String[] args) {
+        initServices();
+
+        lab4();
+    }
+
+    public static void initServices() {
         BankService bankService = GlobalServiceLocator.getInstance().getBankService();
         BankOfficeService bankOfficeService = GlobalServiceLocator.getInstance().getBankOfficeService();
         AtmService atmService = GlobalServiceLocator.getInstance().getAtmService();
@@ -233,7 +248,21 @@ public class Main {
                         paymentAccountService.getAccountById(2 + user.getId())
                 ));
             }
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
+        }
+    }
 
+    public static void lab2() {
+        BankService bankService = GlobalServiceLocator.getInstance().getBankService();
+        BankOfficeService bankOfficeService = GlobalServiceLocator.getInstance().getBankOfficeService();
+        AtmService atmService = GlobalServiceLocator.getInstance().getAtmService();
+        UserService userService = GlobalServiceLocator.getInstance().getUserService();
+        EmployeeService employeeService = GlobalServiceLocator.getInstance().getEmployeeService();
+        PaymentAccountService paymentAccountService = GlobalServiceLocator.getInstance().getPaymentAccountService();
+        CreditAccountService creditAccountService = GlobalServiceLocator.getInstance().getCreditAccountService();
+
+        try {
             Scanner in = new Scanner(System.in);
             StringBuilder bankOption = new StringBuilder("Вывод информации о банках\n");
             bankOption.append("Введите айди банка\n");
@@ -262,8 +291,18 @@ public class Main {
                 System.out.println(userService.stringRepresentation(inputValue));
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
+    }
+
+    public static void lab3() {
+        BankService bankService = GlobalServiceLocator.getInstance().getBankService();
+        BankOfficeService bankOfficeService = GlobalServiceLocator.getInstance().getBankOfficeService();
+        AtmService atmService = GlobalServiceLocator.getInstance().getAtmService();
+        UserService userService = GlobalServiceLocator.getInstance().getUserService();
+        EmployeeService employeeService = GlobalServiceLocator.getInstance().getEmployeeService();
+        PaymentAccountService paymentAccountService = GlobalServiceLocator.getInstance().getPaymentAccountService();
+        CreditAccountService creditAccountService = GlobalServiceLocator.getInstance().getCreditAccountService();
 
         String userId = "";
         try {
@@ -316,6 +355,96 @@ public class Main {
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    public static void lab4() {
+        BankService bankService = GlobalServiceLocator.getInstance().getBankService();
+        BankOfficeService bankOfficeService = GlobalServiceLocator.getInstance().getBankOfficeService();
+        AtmService atmService = GlobalServiceLocator.getInstance().getAtmService();
+        UserService userService = GlobalServiceLocator.getInstance().getUserService();
+        EmployeeService employeeService = GlobalServiceLocator.getInstance().getEmployeeService();
+        PaymentAccountService paymentAccountService = GlobalServiceLocator.getInstance().getPaymentAccountService();
+        CreditAccountService creditAccountService = GlobalServiceLocator.getInstance().getCreditAccountService();
+
+        String userId = "";
+        String filterBankId = "";
+        String filePath = "";
+        String outBankId = "";
+        String inBankId = "";
+        try {
+            Scanner in = new Scanner(System.in);
+
+            System.out.println("Механика сохранения всех счетов пользователя в определнном банке в .txt файл\n");
+            System.out.println("Айди всех пользователей в системе: ");
+            for (User user : userService.getAllUsers()) {
+                System.out.print(user.getId() + " ");
+            }
+            System.out.println();
+            System.out.println("Айди всех банков в системе: ");
+            for (Bank bank : bankService.getAllBanks()) {
+                System.out.print(bank.getId() + " ");
+            }
+            System.out.println();
+
+            System.out.print("Введите айди пользователя: ");
+            userId = Integer.toString(in.nextInt());
+            System.out.print("Введите айди банка: ");
+            filterBankId = Integer.toString(in.nextInt());
+            System.out.print("Введите путь к файлу для сохранения: ");
+            filePath = in.next();
+
+            if (userService.writePaymentAccounts(userId, filterBankId, filePath)) {
+                System.out.println("Счета пользователя " + userId + " в банке " +  filterBankId + " успешно сохранены в файле " + filePath);
+            } else {
+                System.out.println("Пользователь " + userId + " не имеет счетов в банке " + filterBankId);
+            }
+
+            System.out.print("Желаете перенести один из сохраненных в файл счетов в другой банк? (Y/N) ");
+            String logicToggle = in.next();
+            if (Objects.equals(logicToggle, "Y")) {
+                String accountId = "";
+                System.out.print("Счет какого типа желаете перенести? (P/C) ");
+                logicToggle = in.next();
+                if (Objects.equals(logicToggle, "P")) {
+                    System.out.println("Айди доступных платежных счетов: ");
+                    for (PaymentAccount paymentAccount : paymentAccountService.getUsersAccounts(userId)) {
+                        System.out.print(paymentAccount.getId() + " ");
+                    }
+                    System.out.print("Введите айди платежного счета: ");
+                    accountId = Integer.toString(in.nextInt());
+                    System.out.print("Введите айди банка, в который следует перенести счет: ");
+                    filterBankId = Integer.toString(in.nextInt());
+
+                    if (bankService.addPaymentAccountFromFile(filePath, filterBankId, accountId)) {
+                        System.out.println("Счет перенесен успешно");
+                    } else {
+                        System.out.println("Не удалось перенести счет");
+                    }
+
+                } else if (Objects.equals(logicToggle, "C")){
+                    System.out.println("Айди доступных кредитных счетов: ");
+                    for (CreditAccount creditAccount : creditAccountService.getUsersAccounts(userId)) {
+                        System.out.print(creditAccount.getId() + " ");
+                    }
+                    System.out.print("Введите айди платежного счета: ");
+                    accountId = Integer.toString(in.nextInt());
+                    System.out.print("Введите айди банка, в который следует перенести счет: ");
+                    filterBankId = Integer.toString(in.nextInt());
+
+                    if (bankService.addCreditAccountFromFromFile(filePath, filterBankId, accountId)) {
+                        System.out.println("Счет перенесен успешно");
+                    } else {
+                        System.out.println("Не удалось перенести счет");
+                    }
+                } else {
+                    return;
+                }
+            } else {
+                return;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
         }
     }
 }
